@@ -1,0 +1,117 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_tab.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/24 16:32:37 by jlange            #+#    #+#             */
+/*   Updated: 2018/04/10 18:50:35 by jlange           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "wolf3d.h"
+
+int				check_size_x(char *str, int *x, int y)
+{
+	int i;
+	int ret;
+
+	i = 0;
+	ret = 0;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]))
+		{
+			i += ft_intlen(ft_atoi(&str[i]));
+			++ret;
+		}
+		else if (str[i] == ',')
+			++i;
+		else
+			return (3);
+	}
+	if (y == 0)
+		*x = ret;
+	else if (ret != *x)
+		return (4);
+	return (0);
+}
+
+int 				ft_alloc_map(t_wolf *wolf, char **av)
+{
+	char	*line;
+	int		fd;
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	fd = open(av[1], O_RDONLY);
+	while (get_next_line(fd, &line) > 0)
+	{
+		if ((wolf->error = check_size_x(line, &x, y)))
+			return (wolf->error);
+		free(line);
+		++y;
+	}
+	close(fd);
+	fd = 0;
+	if (!(wolf->map = (int**)malloc(sizeof(int*) * (y))))
+		return (2);
+	while (fd < y)
+	{
+		if (!(wolf->map[fd] = (int*)malloc(sizeof(int) * (x))))
+			return (2);
+		++fd;
+	}
+	wolf->mapWidth = x;
+	wolf->mapHeigth = y;
+	return (0);
+}
+
+void				ft_fill_map(char *str, int *map)
+{
+	int i;
+	int	x;
+	int strSize;
+
+	i = 0;
+	x = 0;
+	strSize = ft_strlen(str);
+	while (i < strSize)
+	{
+		if (ft_isdigit(str[i]))
+		{
+			map[x] = ft_atoi(&str[i]);
+			i += ft_intlen(ft_atoi(&str[i]));
+			++x;
+		}
+		++i;
+	}
+}
+
+int 				ft_fill_tab(t_wolf *wolf, char **av)
+{
+	char	*line;
+	int		fd;
+	int		y;
+
+	if ((fd = open(av[1], O_RDONLY)) <= 2)
+	{
+		ft_putstr_fd("Error: can't open ", 2);
+		ft_putendl_fd(av[1], 2);
+		return (1);
+	}
+	if ((wolf->error = ft_alloc_map(wolf, av)))
+		return (wolf->error);
+	y = 0;
+	while (get_next_line(fd, &line) > 0)
+	{
+		ft_fill_map(line, wolf->map[y]);
+		y++;
+		free(line);
+	}
+	close(fd);
+	return (0);
+}

@@ -1,0 +1,21 @@
+#include "wolf3d.h"
+
+void ft_free(t_wolf *wolf)
+{
+  int y;
+
+  y = 0;
+  while (y < wolf->mapHeigth)
+  {
+    free(wolf->map[y]);
+    ++y;
+  }
+  free(wolf->map);
+  y = 0;
+  while (y < 4)
+  {
+    if (wolf->wall[y].mlx_img)
+      mlx_destroy_image(wolf->mlx, wolf->wall[y].mlx_img);
+    ++y;
+  }
+}
