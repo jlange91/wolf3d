@@ -10,7 +10,7 @@ t_dpoint find_dist(double angle)
 	yA = fabs(SQUARE * dTan(angle));
 	dist.x = sqrt(xA * xA + SQUARE * SQUARE);
 	dist.y = sqrt(yA * yA + SQUARE * SQUARE);
-	if (angle == 0 || angle == 180)
+/*	if (angle == 0 || angle == 180)
 	{
 		dist.y = SQUARE;
 		dist.x = INFINITY;
@@ -19,7 +19,7 @@ t_dpoint find_dist(double angle)
 	{
 			dist.x = SQUARE;
 			dist.y = INFINITY;
-	}
+	}*/
 	return (dist);
 }
 
@@ -39,7 +39,7 @@ t_dpoint find_first_dist(double posX, double posY, double angle)
 	yA = fabs(x * dTan(angle));
 	dist.x = sqrt(xA * xA + y * y);
 	dist.y = sqrt(yA * yA + x * x);
-	if (angle == 0 || angle == 180)
+/*	if (angle == 0 || angle == 180)
 	{
 		dist.y = y;
 		dist.x = INFINITY;
@@ -48,7 +48,7 @@ t_dpoint find_first_dist(double posX, double posY, double angle)
 	{
 		dist.x = x;
 		dist.y = INFINITY;
-	}
+	}*/
 	return (dist);
 }
 
@@ -71,7 +71,6 @@ t_intersection search_intersection(t_wolf *wolf, t_intersection inter)
 	else
 		stepY = 1;
 
-
 	int mapX = (wolf->posX / SQUARE);
 	int mapY = (wolf->posY / SQUARE);
 	int firstx = 0;
@@ -79,8 +78,6 @@ t_intersection search_intersection(t_wolf *wolf, t_intersection inter)
 	int side = 0;
 	int hit = 0;
 
-
-	// while (hit == 0 && iteration < wolf->iteration)
 	while (hit == 0)
 	{
 		if (first_dist.x < first_dist.y || first_dist.y == INFINITY)

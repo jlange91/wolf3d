@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 17:56:39 by jlange            #+#    #+#             */
-/*   Updated: 2018/12/06 02:45:52 by jlange           ###   ########.fr       */
+/*   Updated: 2018/12/14 22:23:00 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define MARON_C 0xC37612
 # define JAUNE 0xF2F266
 
-# define WIN_X 980
+# define WIN_X 1280
 # define WIN_Y 720
 
 #define LENGHT_VIEW 10000
@@ -57,12 +57,12 @@
 
 # define WIN_X_MINIMAP 250
 # define WIN_Y_MINIMAP 200
-# define MINIMAP_ZOOM 8
+# define MINIMAP_ZOOM 3.2
 
 #define START_ANGLE 60
 
-#define SPEED_ROT 6
-#define SPEED_MOOVE 10
+#define SPEED_ROT 5
+#define SPEED_MOOVE 7
 
 typedef struct		s_line
 {
@@ -182,5 +182,8 @@ void 							minimap_draw_perso(t_wolf *wolf);
 
 void 							init_screen(t_wolf *wolf);
 void							display_screen(t_wolf *wolf);
+
+void	ft_line_wall(t_point map0, t_point map1, t_image *img, int color);
+
 
 #endif

@@ -15,7 +15,7 @@ void	display_column(t_wolf *wolf, int x, int y1, int y2, int test, int x1)
 	while (y2 - y1 > 0 && y1 < WIN_Y)
 	{
 		pixel = ((int)(i / wolf->hpp) * wolf->wall[test].width) + x1 % wolf->wall[test].width;
-		if (pixel > wolf->wall[test].width && pixel < (wolf->wall[test].height * wolf->wall[test].width) - 1)
+		if (pixel > 0 && pixel < (wolf->wall[test].height * wolf->wall[test].width) - 1)
 			color = wolf->wall[test].img[pixel];
 		pixel = (y1 * WIN_X) + x;
 		if ((y1 > 0 && y1 < WIN_Y) && (x >= 0 && x < WIN_X))
@@ -35,13 +35,14 @@ void					display_screen(t_wolf *wolf)
 
   t_point point1;
   t_point point2;
+
   for (int i = 0; i < WIN_X; i++){
     point1.x = i;
     point2.x = i;
     point1.y = (WIN_Y / 2) - (wolf->inter[i].wall / 2);
     point2.y = (WIN_Y / 2) + (wolf->inter[i].wall / 2);
     if (wolf->inter[i].hit <= 0 || wolf->inter[i].hit > 4 || wolf->wall[wolf->inter[i].hit - 1].mlx_img == NULL)
-			ft_line(point1, point2, &wolf->screen, wolf->inter[i].color);
+			ft_line_wall(point1, point2, &wolf->screen, wolf->inter[i].color);
     else
 		{
 			wolf->hpp = (double)wolf->inter[i].wall /
@@ -51,6 +52,7 @@ void					display_screen(t_wolf *wolf)
 				(wolf->inter[i].hit == 1 || wolf->inter[i].hit == 2) ? wolf->inter[i].point.x : wolf->inter[i].point.y);
 		}
   }
+
 
 	mlx_put_image_to_window(wolf->mlx, wolf->screen.win, wolf->screen.mlx_img, 0, 0);
 	mlx_destroy_image(wolf->mlx, wolf->screen.mlx_img);
