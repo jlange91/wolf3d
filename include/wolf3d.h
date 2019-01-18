@@ -48,21 +48,20 @@
 # define MARON_C 0xC37612
 # define JAUNE 0xF2F266
 
-# define WIN_X 1280
-# define WIN_Y 720
+# define WIN_X 1800
+# define WIN_Y 1024
 
-#define LENGHT_VIEW 10000
+#define LENGHT_VIEW 10000000
 #define FOV 60
-#define SQUARE 32
 
 # define WIN_X_MINIMAP 250
 # define WIN_Y_MINIMAP 200
-# define MINIMAP_ZOOM 3.2
+# define MINIMAP_ZOOM 5
 
 #define START_ANGLE 60
 
 #define SPEED_ROT 5
-#define SPEED_MOOVE 7
+#define SPEED_MOOVE 0.4
 
 typedef struct		s_line
 {
@@ -88,7 +87,7 @@ typedef struct		s_dpoint
 
 typedef struct		s_intersection
 {
-	t_point				point;
+	t_dpoint				point;
 	double				dist;
 	double				dist_wfe; //dist without fisheyes
 	int						wall;
@@ -140,7 +139,7 @@ typedef struct		s_wolf
 	t_image					screen;
 	t_intersection	inter[WIN_X];
 	t_image					wall[4];
-	double					hpp; //hauteur par pixel;
+	long double			hpp; //hauteur par pixel;
 	int							minimapX;
 	int							minimapY;
 	t_minimap				mm_info;
@@ -162,6 +161,7 @@ void 							ft_draw_rectangle(t_point map0, t_point map1, t_image	*img,
 									int color);
 void							ft_line(t_point map0, t_point map1, t_image *img, int color);
 t_point 					endpoint(double angle, int x1 , int y1, double lenght);
+t_dpoint 					endpoint2(double angle, double x1 , double y1, double lenght);
 
 double						dCos(double degree);
 double						dSin(double degree);

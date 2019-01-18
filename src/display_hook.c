@@ -61,12 +61,12 @@ int						ft_display_hook(int keycode, void *test)
 
 			posX = wolf->posX + dCos(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
 			posY = wolf->posY + dSin(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
-			if (posX / SQUARE >= wolf->mapWidth || posX / SQUARE < 0 ||
-				 posY / SQUARE >= wolf->mapHeigth || posY / SQUARE < 0)
+			if (posX >= wolf->mapWidth || posX < 0 ||
+				 posY >= wolf->mapHeigth || posY < 0)
 				return (0);
-			if (!wolf->map[(int)(wolf->posY / SQUARE)][(int)(posX / SQUARE)])
+			if (!wolf->map[(int)(wolf->posY)][(int)(posX)])
 				wolf->posX = posX;
-			if (!wolf->map[(int)(posY / SQUARE)][(int)(wolf->posX / SQUARE)])
+			if (!wolf->map[(int)(posY)][(int)(wolf->posX)])
 				wolf->posY = posY;
 		}
 		else
@@ -76,12 +76,12 @@ int						ft_display_hook(int keycode, void *test)
 
 			posX = wolf->posX - dCos(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
 			posY = wolf->posY - dSin(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
-			if (posX / SQUARE >= wolf->mapWidth || posX / SQUARE < 0 ||
-				 posY / SQUARE >= wolf->mapHeigth || posY / SQUARE < 0)
+			if (posX >= wolf->mapWidth || posX < 0 ||
+				 posY >= wolf->mapHeigth || posY < 0)
 				return (0);
-			if (!wolf->map[(int)(wolf->posY / SQUARE)][(int)(posX / SQUARE)])
+			if (!wolf->map[(int)(wolf->posY)][(int)(posX)])
 				wolf->posX = posX;
-			if (!wolf->map[(int)(posY / SQUARE)][(int)(wolf->posX / SQUARE)])
+			if (!wolf->map[(int)(posY)][(int)(wolf->posX)])
 				wolf->posY = posY;
 		}
 		ft_wolf(wolf);

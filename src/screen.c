@@ -1,6 +1,6 @@
 #include "wolf3d.h"
 
-void	display_column(t_wolf *wolf, int x, int y1, int y2, int test, int x1)
+void	display_column(t_wolf *wolf, int x, int y1, int y2, int test, double x1)
 {
 	unsigned int	color = 0;
 	int 					pixel;
@@ -14,8 +14,8 @@ void	display_column(t_wolf *wolf, int x, int y1, int y2, int test, int x1)
 	}
 	while (y2 - y1 > 0 && y1 < WIN_Y)
 	{
-		pixel = ((int)(i / wolf->hpp) * wolf->wall[test].width) + x1 % wolf->wall[test].width;
-		if (pixel > 0 && pixel < (wolf->wall[test].height * wolf->wall[test].width) - 1)
+		pixel = ((int)round(i / wolf->hpp) * wolf->wall[test].width) + (fmod(x1, 1) * wolf->wall[test].width);
+		if (pixel >= 0 && pixel < (wolf->wall[test].height * wolf->wall[test].width) - 1)
 			color = wolf->wall[test].img[pixel];
 		pixel = (y1 * WIN_X) + x;
 		if ((y1 > 0 && y1 < WIN_Y) && (x >= 0 && x < WIN_X))
@@ -36,6 +36,14 @@ void					display_screen(t_wolf *wolf)
   t_point point1;
   t_point point2;
 
+	for (int i = 0; i < WIN_X; i++){
+		point1.x = i;
+		point2.x = i;
+		point1.y = (WIN_Y / 2);
+		point2.y = WIN_Y;
+			ft_line_wall(point1, point2, &wolf->screen, BLANC);
+		}
+
   for (int i = 0; i < WIN_X; i++){
     point1.x = i;
     point2.x = i;
@@ -45,6 +53,7 @@ void					display_screen(t_wolf *wolf)
 			ft_line_wall(point1, point2, &wolf->screen, wolf->inter[i].color);
     else
 		{
+
 			wolf->hpp = (double)wolf->inter[i].wall /
 									(double)wolf->wall[wolf->inter[i].hit - 1].height;
 

@@ -7,8 +7,8 @@ void 					minimap_draw_angle(t_wolf *wolf)
 		t_point pointB;
 
 		i = -1;
-		pointA.x = fmod(wolf->posX / MINIMAP_ZOOM, wolf->minimap.width);
-		pointA.y = fmod(wolf->posY / MINIMAP_ZOOM, wolf->minimap.height);
+		pointA.x = fmod(wolf->posX * MINIMAP_ZOOM, wolf->minimap.width);
+		pointA.y = fmod(wolf->posY * MINIMAP_ZOOM, wolf->minimap.height);
 		if (wolf->mm_info.px > wolf->minimap.width)
 			pointA.x += wolf->mm_info.restx;
 		if (wolf->mm_info.py > wolf->minimap.height)
@@ -16,9 +16,9 @@ void 					minimap_draw_angle(t_wolf *wolf)
 		while (++i < WIN_X)
 		{
 			pointB = endpoint(wolf->inter[i].angle,
-				fmod((wolf->posX / MINIMAP_ZOOM), wolf->minimap.width),
-				fmod((wolf->posY / MINIMAP_ZOOM), wolf->minimap.height),
-				wolf->inter[i].dist / MINIMAP_ZOOM);
+				fmod((wolf->posX * MINIMAP_ZOOM), wolf->minimap.width),
+				fmod((wolf->posY * MINIMAP_ZOOM), wolf->minimap.height),
+				wolf->inter[i].dist * MINIMAP_ZOOM);
 			if (wolf->mm_info.px > wolf->minimap.width)
 				pointB.x += wolf->mm_info.restx;
 			if (wolf->mm_info.py > wolf->minimap.height)
@@ -33,8 +33,8 @@ void 					minimap_draw_map(t_wolf *wolf)
   t_point pointB;
   int x;
   int y;
-	int multX = ((wolf->posX / MINIMAP_ZOOM) / wolf->minimap.width);
-	int multY = ((wolf->posY / MINIMAP_ZOOM) / wolf->minimap.height);
+	int multX = ((wolf->posX * MINIMAP_ZOOM) / wolf->minimap.width);
+	int multY = ((wolf->posY * MINIMAP_ZOOM) / wolf->minimap.height);
 
   y = 0;
   while (y < wolf->minimap.height / wolf->mm_info.square)

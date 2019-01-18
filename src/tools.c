@@ -12,6 +12,20 @@
 
 #include "wolf3d.h"
 
+t_dpoint endpoint2(double angle, double x1 , double y1, double lenght)
+{
+		t_dpoint ret;
+    double radians = (M_PI/180) * angle;
+
+    double x2 = x1 + (lenght * cos(radians));
+    double y2 = y1 + (lenght * sin(radians));
+		ret.x = x2;
+		ret.y = y2;
+		// printf("endpoint %f %f\n", x2, y2);
+
+    return (ret);
+}
+
 t_point endpoint(double angle, int x1 , int y1, double lenght)
 {
 		t_point ret;

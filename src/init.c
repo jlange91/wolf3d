@@ -13,8 +13,8 @@ static int    place_player(t_wolf *wolf)
     {
       if (wolf->map[y][x] == 0)
       {
-        wolf->posX = x * SQUARE + (x * SQUARE / 2);
-        wolf->posY = y * SQUARE + (y * SQUARE / 2);
+        wolf->posX = x + 0.5;
+        wolf->posY = y + 0.5;
         return (0);
       }
       ++x;
@@ -35,7 +35,7 @@ int    ft_init(t_wolf *wolf, char **av)
   wolf->radius = START_ANGLE;
   wolf->spaceInterRadius = (double)FOV / (double)WIN_X;
   wolf->fisheyes = 0;
-  wolf->mm_info.square = SQUARE / MINIMAP_ZOOM;
+  wolf->mm_info.square = MINIMAP_ZOOM;
   wolf->mm_info.restx = fmod(wolf->minimap.width, wolf->mm_info.square);
   wolf->mm_info.resty = fmod(wolf->minimap.height, wolf->mm_info.square);
   wolf->mm_info.px = wolf->posX / MINIMAP_ZOOM;
