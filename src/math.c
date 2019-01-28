@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/28 16:55:44 by jlange            #+#    #+#             */
-/*   Updated: 2019/01/28 16:59:37 by jlange           ###   ########.fr       */
+/*   Created: 2019/01/28 17:42:27 by jlange            #+#    #+#             */
+/*   Updated: 2019/01/28 17:52:59 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include <math.h>
 
-void	ft_error(int error)
+static double	to_radian(double degree)
 {
-	char *str[15];
+	return ((degree) * M_PI / 180.0);
+}
 
-	str[0] = "";
-	str[1] = "";
-	str[2] = "Error: Malloc error\n";
-	str[3] = "Error: Parse error\n";
-	str[4] = "Error: Only rectangular map\n";
-	str[5] = "Error: No space for player in map\n";
-	if (error > 1 && error < 15)
-		ft_putstr_fd(str[error], 2);
+double			d_cos(double degree)
+{
+	return (cos(to_radian(degree)));
+}
+
+double			d_sin(double degree)
+{
+	return (sin(to_radian(degree)));
+}
+
+double			d_tan(double degree)
+{
+	return (tan(to_radian(degree)));
 }

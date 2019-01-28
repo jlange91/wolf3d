@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 17:56:39 by jlange            #+#    #+#             */
-/*   Updated: 2018/12/14 22:23:00 by jlange           ###   ########.fr       */
+/*   Updated: 2019/01/28 17:53:53 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,9 +163,9 @@ void							ft_line(t_point map0, t_point map1, t_image *img, int color);
 t_point 					endpoint(double angle, int x1 , int y1, double lenght);
 t_dpoint 					endpoint2(double angle, double x1 , double y1, double lenght);
 
-double						dCos(double degree);
-double						dSin(double degree);
-double						dTan(double degree);
+double						d_cos(double degree);
+double						d_sin(double degree);
+double						d_tan(double degree);
 
 t_dpoint 					find_dist(double angle);
 t_dpoint 					find_first_dist(double posX, double posY, double angle);

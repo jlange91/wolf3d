@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 16:32:37 by jlange            #+#    #+#             */
-/*   Updated: 2018/04/10 18:50:35 by jlange           ###   ########.fr       */
+/*   Updated: 2019/01/28 17:03:47 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,11 @@ int				check_size_x(char *str, int *x, int y)
 	return (0);
 }
 
-int 				ft_alloc_map(t_wolf *wolf, char **av)
+int				ft_alloc_map(t_wolf *wolf, char **av, int x, int y)
 {
 	char	*line;
 	int		fd;
-	int		x;
-	int		y;
 
-	x = 0;
-	y = 0;
 	fd = open(av[1], O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -70,16 +66,16 @@ int 				ft_alloc_map(t_wolf *wolf, char **av)
 	return (0);
 }
 
-void				ft_fill_map(char *str, int *map)
+void			ft_fill_map(char *str, int *map)
 {
-	int i;
-	int	x;
-	int strSize;
+	int		i;
+	int		x;
+	int		strlen;
 
 	i = 0;
 	x = 0;
-	strSize = ft_strlen(str);
-	while (i < strSize)
+	strlen = ft_strlen(str);
+	while (i < strlen)
 	{
 		if (ft_isdigit(str[i]))
 		{
@@ -91,7 +87,7 @@ void				ft_fill_map(char *str, int *map)
 	}
 }
 
-int 				ft_fill_tab(t_wolf *wolf, char **av)
+int				ft_fill_tab(t_wolf *wolf, char **av)
 {
 	char	*line;
 	int		fd;
@@ -103,7 +99,7 @@ int 				ft_fill_tab(t_wolf *wolf, char **av)
 		ft_putendl_fd(av[1], 2);
 		return (1);
 	}
-	if ((wolf->error = ft_alloc_map(wolf, av)))
+	if ((wolf->error = ft_alloc_map(wolf, av, 0, 0)))
 		return (wolf->error);
 	y = 0;
 	while (get_next_line(fd, &line) > 0)

@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 22:32:51 by jlange            #+#    #+#             */
-/*   Updated: 2018/04/10 18:50:09 by jlange           ###   ########.fr       */
+/*   Updated: 2019/01/28 17:54:42 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int						ft_display_hook(int keycode, void *test)
 			double posX;
 			double posY;
 
-			posX = wolf->posX + dCos(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
-			posY = wolf->posY + dSin(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
+			posX = wolf->posX + d_cos(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
+			posY = wolf->posY + d_sin(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
 			if (posX >= wolf->mapWidth || posX < 0 ||
 				 posY >= wolf->mapHeigth || posY < 0)
 				return (0);
@@ -74,8 +74,8 @@ int						ft_display_hook(int keycode, void *test)
 			double posX;
 			double posY;
 
-			posX = wolf->posX - dCos(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
-			posY = wolf->posY - dSin(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
+			posX = wolf->posX - d_cos(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
+			posY = wolf->posY - d_sin(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
 			if (posX >= wolf->mapWidth || posX < 0 ||
 				 posY >= wolf->mapHeigth || posY < 0)
 				return (0);
