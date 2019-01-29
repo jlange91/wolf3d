@@ -7,7 +7,7 @@ unsigned int	set_color(double dist, unsigned int color)
 	unsigned int green;
 	unsigned int blue;
 
-	coef = round(dist / 0.25);
+	coef = dist * 100 / LENGHT_VIEW;
 	red = ((color & 0xFF0000) >> 16) * (100 - coef) / 100;
 	red = (red > 0xFF) ? 0 : red;
 	green = ((color & 0xFF00) >> 8) * (100 - coef) / 100;
