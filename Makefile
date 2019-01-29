@@ -37,7 +37,8 @@ SRC_NAME =  main.c							\
 						free.c 							\
 						init_textures.c 		\
 						init.c 							\
-						intersection.c 			\
+						intersection1.c 		\
+						intersection2.c 		\
 						minimap_draw.c	 		\
 						minimap.c				 		\
 						screen.c 						\

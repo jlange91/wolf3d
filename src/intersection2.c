@@ -10,16 +10,6 @@ t_dpoint find_dist(double angle)
 	yA = fabs(1 * d_tan(angle));
 	dist.x = sqrt(xA * xA + 1);
 	dist.y = sqrt(yA * yA + 1);
-/*	if (angle == 0 || angle == 180)
-	{
-		dist.y = SQUARE;
-		dist.x = INFINITY;
-	}
-	else if (angle == 90 || angle == 270)
-	{
-			dist.x = SQUARE;
-			dist.y = INFINITY;
-	}*/
 	return (dist);
 }
 
@@ -39,16 +29,6 @@ t_dpoint find_first_dist(double posX, double posY, double angle)
 	yA = fabs(x * d_tan(angle));
 	dist.x = sqrt(xA * xA + y * y);
 	dist.y = sqrt(yA * yA + x * x);
-/*	if (angle == 0 || angle == 180)
-	{
-		dist.y = y;
-		dist.x = INFINITY;
-	}
-	else if (angle == 90 || angle == 270)
-	{
-		dist.x = x;
-		dist.y = INFINITY;
-	}*/
 	return (dist);
 }
 
@@ -114,10 +94,7 @@ t_intersection search_intersection(t_wolf *wolf, t_intersection inter)
 	else if (inter.hit == 4)
 		inter.color = BLANC;
 	inter.point = endpoint2(inter.angle, wolf->posX, wolf->posY, inter.dist);
-	// printf("inter %f %f\n", inter.point.x, inter.point.y);
 
-
-	// printf("rayX: %d rayY: %d\nwallX: %d wallY: %d\n\n", inter.point.x, inter.point.y, mapX*32, mapY*32);
 	if (!wolf->fisheyes)
 	{
 		double middle = wolf->radius + (FOV / 2);
@@ -128,26 +105,4 @@ t_intersection search_intersection(t_wolf *wolf, t_intersection inter)
 	else
 		inter.dist_wfe = inter.dist;
   return (inter);
-}
-
-
-void  search_intersections(t_wolf *wolf)
-{
-	t_point map0;
-	double	startAngle;
-	int			i;
-
-	i = 0;
-	map0.x = wolf->posX;
-	map0.y = wolf->posY;
-	startAngle = wolf->radius;
-	while (i < WIN_X)
-	{
-    wolf->inter[i].angle = startAngle;
-		wolf->inter[i] = search_intersection(wolf, wolf->inter[i]);
-		wolf->inter[i].wall = ((WIN_X / 2) / d_tan(30)) / wolf->inter[i].dist_wfe;
-		startAngle += wolf->spaceInterRadius;
-		startAngle -= (startAngle >= 360.) ? 360 : 0;
-		++i;
-	}
 }
