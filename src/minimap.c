@@ -29,6 +29,7 @@ void					display_minimap(t_wolf *wolf)
 	point_b.y = WIN_Y_MINIMAP + 1;
 	ft_draw_rectangle(point_a, point_b, &wolf->minimap, 0xFF000000);
 	// minimap_draw_cadriage(wolf);
+	printf("x: %f y: %f\n", wolf->posX, wolf->posY);
 	minimap_draw_map(wolf);
 	minimap_draw_angle(wolf);
 	minimap_draw_perso(wolf);

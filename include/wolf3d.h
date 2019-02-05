@@ -56,12 +56,12 @@
 
 # define WIN_X_MINIMAP 250
 # define WIN_Y_MINIMAP 200
-# define MINIMAP_ZOOM 4
+# define MINIMAP_ZOOM 6
 
 #define START_ANGLE 60
 
-#define SPEED_ROT 5
-#define SPEED_MOOVE 0.4
+#define SPEED_ROT 10
+#define SPEED_MOOVE 1
 
 typedef struct		s_line
 {

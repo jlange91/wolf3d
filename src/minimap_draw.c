@@ -53,30 +53,32 @@ void					minimap_draw_map(t_wolf *wolf)
 	double			y;
 
 	y = 0;
-	ry = wolf->posY - (max_y / 2);
-	my = fabs(fmod(wolf->posY, 1) - 1);
-	mx = fabs(fmod(wolf->posX, 1) - 1);
+	ry = (wolf->posY - ((wolf->minimap.height / wolf->mm_info.square) / 2));
+	my = fmod((wolf->posY - ((wolf->minimap.height / wolf->mm_info.square) / 2)), 1) - wolf->mm_info.square;
 	while (y < max_y)
 	{
 		x = 0;
-		rx = wolf->posX - (max_x / 2);
+		rx = (wolf->posX - ((wolf->minimap.width / wolf->mm_info.square) / 2));
+		mx = fmod((wolf->posX - ((wolf->minimap.width / wolf->mm_info.square) / 2)), 1) - wolf->mm_info.square;
 		while (x < max_x)
 		{
 			if (ry < wolf->mapHeigth && ry >= 0 &&
 					rx < wolf->mapWidth && rx >= 0 &&
 					wolf->map[(int)ry][(int)rx])
 			{
-				point_a.x = ((x + mx) * wolf->mm_info.square);
-				point_a.y = ((y + my) * wolf->mm_info.square);
-				point_b.x = ((x + mx) * wolf->mm_info.square) + wolf->mm_info.square;
-				point_b.y = ((y + my) * wolf->mm_info.square) + wolf->mm_info.square;
+				point_a.x = mx;
+				point_a.y = my;
+				point_b.x = mx + wolf->mm_info.square;
+				point_b.y = my + wolf->mm_info.square;
 				ft_draw_rectangle(point_a, point_b, &wolf->minimap, BLANC);
 			}
 			++rx;
 			++x;
+			mx += wolf->mm_info.square;
 		}
 		++y;
 		++ry;
+		my += wolf->mm_info.square;
 	}
 }
 
