@@ -56,7 +56,7 @@
 
 # define WIN_X_MINIMAP 250
 # define WIN_Y_MINIMAP 200
-# define MINIMAP_ZOOM 6
+# define MINIMAP_ZOOM 5
 
 #define START_ANGLE 60
 
