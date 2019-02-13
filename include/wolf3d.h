@@ -51,7 +51,7 @@
 # define WIN_X 1800
 # define WIN_Y 1024
 
-#define LENGHT_VIEW 15
+#define LENGHT_VIEW 30
 #define FOV 60
 
 # define WIN_X_MINIMAP 250
@@ -72,6 +72,17 @@ typedef struct		s_line
 	int err;
 	int e2;
 }									t_line;
+
+typedef struct		s_pos
+{
+	unsigned long	x;
+	unsigned long y;
+	int 					type;
+	struct s_pos	*n;
+	struct s_pos	*s;
+	struct s_pos	*e;
+	struct s_pos	*w;
+}									t_pos;
 
 typedef struct		s_point
 {
@@ -131,6 +142,7 @@ typedef struct		s_wolf
 	int 						mapWidth;
 	int 						mapHeigth;
 	double					radius;
+	t_pos						pos;
 	double					posX;
 	double					posY;
 	double					spaceInterRadius;
@@ -184,6 +196,9 @@ void 							init_screen(t_wolf *wolf);
 void							display_screen(t_wolf *wolf);
 
 void	ft_line_wall(t_point map0, t_point map1, t_image *img, int color);
+
+// void create_blocks(t_wolf *wolf, unsigned long x, unsigned long y);
+
 
 
 #endif

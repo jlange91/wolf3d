@@ -81,49 +81,6 @@ void					minimap_draw_map(t_wolf *wolf)
 	}
 }
 
-// void					minimap_draw_map(t_wolf *wolf)
-// {
-// 	double max_x = wolf->minimap.width / wolf->mm_info.square;
-// 	double max_y = wolf->minimap.height / wolf->mm_info.square;
-// 	t_point		point_a;
-// 	t_point		point_b;
-// 	double			rx;
-// 	double			ry;
-// 	int			mx;
-// 	int			my;
-// 	double			x;
-// 	double			y;
-//
-// 	y = 0;
-// 	ry = wolf->posY - (max_y / 2);
-// 	my = fabs(fmod(wolf->posY, 1) - 1) * wolf->mm_info.square;
-// 	while (y < max_y)
-// 	{
-// 		x = 0;
-// 		rx = wolf->posX - (max_x / 2);
-// 		mx = fabs(fmod(wolf->posX, 1) - 1) * wolf->mm_info.square;
-// 		while (x < max_x)
-// 		{
-// 			if (ry < wolf->mapHeigth && ry >= 0 &&
-// 					rx < wolf->mapWidth && rx >= 0 &&
-// 					wolf->map[(int)ry][(int)rx])
-// 			{
-// 				point_a.x = mx;
-// 				point_a.y = my;
-// 				point_b.x = mx + wolf->mm_info.square;
-// 				point_b.y = my + wolf->mm_info.square;
-// 				ft_draw_rectangle(point_a, point_b, &wolf->minimap, BLANC);
-// 			}
-// 			++rx;
-// 			++x;
-// 			mx += wolf->mm_info.square;
-// 		}
-// 		++y;
-// 		++ry;
-// 		my += wolf->mm_info.square;
-// 	}
-// }
-
 void					minimap_draw_cadriage(t_wolf *wolf)
 {
 	t_point		point_a;

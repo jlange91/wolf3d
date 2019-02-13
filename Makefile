@@ -42,7 +42,8 @@ SRC_NAME =  main.c							\
 						minimap_draw.c	 		\
 						minimap.c				 		\
 						screen.c 						\
-						math.c 						\
+						math.c 							\
+						# infinitymap.c				\
 
 OBJ = $(SRC_NAME:.c=.o)
 
