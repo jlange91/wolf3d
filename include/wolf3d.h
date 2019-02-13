@@ -51,12 +51,12 @@
 # define WIN_X 1800
 # define WIN_Y 1024
 
-#define LENGHT_VIEW 50
+#define LENGHT_VIEW 15
 #define FOV 60
 
 # define WIN_X_MINIMAP 250
 # define WIN_Y_MINIMAP 200
-# define MINIMAP_ZOOM 5
+# define MINIMAP_ZOOM 10
 
 #define START_ANGLE 60
 

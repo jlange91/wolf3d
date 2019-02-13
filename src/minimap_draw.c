@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+	/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minimap_draw.c                                     :+:      :+:    :+:   */
@@ -51,26 +51,26 @@ void					minimap_draw_map(t_wolf *wolf)
 	double			my;
 	double			x;
 	double			y;
-
 	y = 0;
-	ry = (wolf->posY - ((wolf->minimap.height / wolf->mm_info.square) / 2));
-	my = fmod(ry, 1);
-	printf("my: %f\n", my);
-	while (y < max_y)
+	ry = (wolf->posY - (max_y / 2));
+	my = fmod((wolf->minimap.height / 2) - (wolf->posY * wolf->mm_info.square), wolf->mm_info.square);
+	my = (my > 0) ? my - wolf->mm_info.square : my;
+	while (y < max_y + 1)
 	{
 		x = 0;
-		rx = (wolf->posX - ((wolf->minimap.width / wolf->mm_info.square) / 2));
-		mx = fmod(rx, 1) * wolf->mm_info.square;
-		while (x < max_x)
+		rx = (wolf->posX - (max_x / 2));
+		mx = fmod((wolf->minimap.width / 2) - (wolf->posX * wolf->mm_info.square), wolf->mm_info.square);
+		mx = (mx > 0) ? mx - wolf->mm_info.square : mx;
+		while (x < max_x + 1)
 		{
 			if (ry < wolf->mapHeigth && ry >= 0 &&
 					rx < wolf->mapWidth && rx >= 0 &&
 					wolf->map[(int)ry][(int)rx])
 			{
-				point_a.x = (x * wolf->mm_info.square) - (mx / 1);
-				point_a.y = (y * wolf->mm_info.square) - (my / 1);
-				point_b.x = ((x + 1) * wolf->mm_info.square) - (mx / 1);
-				point_b.y = ((y + 1) * wolf->mm_info.square) - (my / 1);
+				point_a.x = (x * wolf->mm_info.square) + round(mx);
+				point_a.y = (y * wolf->mm_info.square) + round(my);
+				point_b.x = ((x + 1) * wolf->mm_info.square) + round(mx);
+				point_b.y = ((y + 1) * wolf->mm_info.square) + round(my);
 				ft_draw_rectangle(point_a, point_b, &wolf->minimap, BLANC);
 			}
 			++rx;
