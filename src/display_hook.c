@@ -12,20 +12,17 @@
 
 #include "wolf3d.h"
 
-// static inline void		ft_display_hook1(int keycode, t_mlx *mlx)
-// {
-// 	if (keycode == MINUS || keycode == PLUS)
-// 	{
-// 		if (keycode == PLUS)
-// 		{
-// 		}
-// 		else
-// 			;
-// 		ft_display_img((t_mlx*)mlx);
-// 	}
-// 	else
-// 		ft_display_hook2(keycode, mlx);
-// }
+static inline void		ft_display_hook1(int keycode, t_wolf *wolf)
+{
+	if (keycode == MINUS || keycode == PLUS)
+	{
+		if (keycode == PLUS)
+			wolf->mm_info.square += 1;
+		else
+			wolf->mm_info.square -= (wolf->mm_info.square > 1 ) ? 1 : 0;
+		ft_wolf(wolf);
+	}
+}
 
 int						ft_display_hook(int keycode, void *test)
 {
@@ -91,7 +88,7 @@ int						ft_display_hook(int keycode, void *test)
 		wolf->fisheyes = (wolf->fisheyes == 0) ? 1 : 0;
 		ft_wolf(wolf);
 	}
-	// else
-	// 	ft_display_hook1(keycode, test);
+	else
+		ft_display_hook1(keycode, wolf);
 	return (0);
 }
