@@ -51,21 +51,21 @@
 
 # define WIN_X 1800
 # define WIN_Y 1024
-
-#define LENGHT_VIEW 100
-#define FOV 60
-
 # define WIN_X_MINIMAP 250
 # define WIN_Y_MINIMAP 200
-# define MINIMAP_ZOOM 3
+# define START_ANGLE 60
 
-#define START_ANGLE 60
+# define LENGHT_VIEW 100
+# define FOV 60
+# define MINIMAP_ZOOM 1
 
-#define SPEED_ROT 5
-#define SPEED_MOOVE 0.5
+# define SPEED_ROT 5
+# define SPEED_MOOVE 0.5
 
-#define BLOCKS_PERCENT 96
-#define SIZE_INFINY_MAP 200
+# define BLOCKS_PERCENT 96
+# define SIZE_INFINY_MAP 1000
+
+# define DISCOVER 0
 
 typedef struct		s_line
 {
@@ -127,11 +127,18 @@ typedef struct		s_minimap
 	double py;
 }									t_minimap;
 
+typedef struct		s_map
+{
+	int 					discover;
+	int						type;
+}									t_map;
+
 typedef struct		s_wolf
 {
 	void						*mlx;
 	char 						*file;
-	unsigned int		**map;
+	t_map						**map;
+	unsigned int		**map2;
 	int 						mapWidth;
 	int 						mapHeigth;
 	double					radius;
@@ -148,6 +155,7 @@ typedef struct		s_wolf
 	int							minimapY;
 	t_minimap				mm_info;
 	int							error;
+	int							discover;
 }									t_wolf;
 
 int								ft_init(t_wolf *wolf, int ac, char **av);
@@ -177,7 +185,7 @@ t_intersection 		search_intersection(t_wolf *wolf, t_intersection inter);
 void  						search_intersections(t_wolf *wolf);
 
 void 							ft_search_intersections(t_wolf *wolf);
-double ret_uchar(double nb);
+double resize_double(double nb);
 
 void							display_minimap(t_wolf *wolf);
 void 							minimap_draw_angle(t_wolf *wolf);

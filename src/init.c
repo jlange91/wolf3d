@@ -24,7 +24,7 @@ static int		place_player(t_wolf *wolf)
 		x = 0;
 		while (x < wolf->mapWidth)
 		{
-			if (wolf->map[y][x] == 0)
+			if (wolf->map[y][x].type == 0)
 			{
 				wolf->posX = x + 0.5;
 				wolf->posY = y + 0.5;
@@ -37,25 +37,22 @@ static int		place_player(t_wolf *wolf)
 	return (5);
 }
 
-unsigned int 		**create_map(t_wolf *wolf) {
-	unsigned int	**ret;
+t_map 		**create_map(t_wolf *wolf) {
+	t_map	**ret;
 	int	i;
 	int	j;
 
 	i = 0;
 	srand(time(NULL));
-	ret = (unsigned int**)malloc(sizeof(unsigned int*) * SIZE_INFINY_MAP);
+	ret = (t_map**)malloc(sizeof(t_map*) * SIZE_INFINY_MAP);
 	while (i < SIZE_INFINY_MAP)
 	{
-		j = 0;
-		ret[i] = (unsigned int*)malloc(sizeof(unsigned int) * SIZE_INFINY_MAP);
-		while (j < SIZE_INFINY_MAP)
+		j = -1;
+		ret[i] = (t_map*)malloc(sizeof(t_map) * SIZE_INFINY_MAP);
+		while (++j < SIZE_INFINY_MAP)
 		{
-			// if (i == 0 || i == 299 || j == 0 || j == 299)
-			// 	ret[i][j] = 1;
-			// else
-				ret[i][j] = ((rand() % 100) > BLOCKS_PERCENT) ? 1 : 0;
-			++j;
+			ret[i][j].type = ((rand() % 100) > BLOCKS_PERCENT) ? 1 : 0;
+			ret[i][j].discover = wolf->discover;
 		}
 		++i;
 	}
@@ -66,6 +63,7 @@ unsigned int 		**create_map(t_wolf *wolf) {
 
 int				ft_init(t_wolf *wolf, int ac, char **av)
 {
+	wolf->discover = DISCOVER;
 	if (ac > 1)
 	{
 		if ((wolf->error = ft_fill_tab(wolf, av)))

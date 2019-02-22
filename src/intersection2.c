@@ -62,7 +62,7 @@ t_intersection search_intersection(t_wolf *wolf, t_intersection inter)
       inter.hit = (inter.angle > 180) ? 1 : 2;
 			first_dist.x += dist.x;
 			mapY += stepY;
-			mapY = ret_uchar(mapY);
+			mapY = resize_double(mapY);
 		}
 		else
 		{
@@ -72,12 +72,15 @@ t_intersection search_intersection(t_wolf *wolf, t_intersection inter)
       inter.hit = (inter.angle > 90 && inter.angle < 270) ? 3 : 4;
 			first_dist.y += dist.y;
 			mapX += stepX;
-			mapX = ret_uchar(mapX);
+			mapX = resize_double(mapX);
 		}
 		if ((mapX >= 0 && mapX < wolf->mapWidth) &&
 				(mapY >= 0 && mapY < wolf->mapHeigth) &&
-				wolf->map[mapY][mapX] > 0)
+				wolf->map[mapY][mapX].type > 0)
+		{
 			hit = 1;
+			wolf->map[mapY][mapX].discover = 1;
+		}
 	}
 
 	if (hit == 0)

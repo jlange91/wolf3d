@@ -53,11 +53,11 @@ int				ft_alloc_map(t_wolf *wolf, char **av, int x, int y)
 	}
 	close(fd);
 	fd = 0;
-	if (!(wolf->map = (unsigned int**)malloc(sizeof(unsigned int*) * (y))))
+	if (!(wolf->map = (t_map**)malloc(sizeof(t_map*) * (y))))
 		return (2);
 	while (fd < y)
 	{
-		if (!(wolf->map[fd] = (unsigned int*)malloc(sizeof(unsigned int) * (x))))
+		if (!(wolf->map[fd] = (t_map*)malloc(sizeof(t_map) * (x))))
 			return (2);
 		++fd;
 	}
@@ -66,7 +66,7 @@ int				ft_alloc_map(t_wolf *wolf, char **av, int x, int y)
 	return (0);
 }
 
-void			ft_fill_map(char *str, unsigned int *map)
+void			ft_fill_map(char *str, t_map *map, int discover)
 {
 	int		i;
 	int		x;
@@ -79,7 +79,8 @@ void			ft_fill_map(char *str, unsigned int *map)
 	{
 		if (ft_isdigit(str[i]))
 		{
-			map[x] = (unsigned int)ft_atoi(&str[i]);
+			map[x].type = (unsigned int)ft_atoi(&str[i]);
+			map[x].discover = discover;
 			i += ft_intlen(ft_atoi(&str[i]));
 			++x;
 		}
@@ -104,7 +105,7 @@ int				ft_fill_tab(t_wolf *wolf, char **av)
 	y = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
-		ft_fill_map(line, wolf->map[y]);
+		ft_fill_map(line, wolf->map[y], wolf->discover);
 		y++;
 		free(line);
 	}
