@@ -23,9 +23,7 @@ int		main(int ac, char **av)
 {
 	t_wolf wolf;
 
-	if (ac < 2)
-		return (1);
-	if (ft_init(&wolf, av) > 0)
+	if (ft_init(&wolf, ac, av) > 0)
 	{
 		ft_error(wolf.error);
 		return (1);

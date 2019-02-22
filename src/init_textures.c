@@ -33,7 +33,7 @@ void	init_textures(t_wolf *wolf)
 		}
 		else
 			wolf->wall[i].img = (unsigned int *)mlx_get_data_addr(
-					wolf->wall[i].mlx_img, &wolf->wall[i].bpb,
+					wolf->wall[i].mlx_img, &wolf->wall[i].bpp,
 					&wolf->wall[i].size_l, &wolf->wall[i].endian);
 		++i;
 	}

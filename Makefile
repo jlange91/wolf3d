@@ -19,8 +19,6 @@ OBJ_PATH = obj
 
 NAME = wolf3d
 
-NAME_BIS = wolf3d
-
 CC = cc
 
 HEADER = include/wolf3d.h
@@ -43,16 +41,15 @@ SRC_NAME =  main.c							\
 						minimap.c				 		\
 						screen.c 						\
 						math.c 							\
-						# infinitymap.c				\
 
 OBJ = $(SRC_NAME:.c=.o)
 
-OBJ_LIB_NAME = $(addprefix obj/, $(OBJ))
+OBJS = $(addprefix obj/, $(OBJ))
 
 all: $(NAME)
 
-$(NAME): obj/ $(OBJ_LIB_NAME)
-	@$(CC) $(OBJ_LIB_NAME) libft/libft.a mlxCapitan/libmlx.a -framework OpenGl -framework AppKit -o $(NAME_BIS)
+$(NAME): obj/ $(OBJS)
+	@$(CC) -g $(OBJS) libft/libft.a mlxCapitan/libmlx.a -framework OpenGl -framework AppKit -o $(NAME) -fsanitize=address 
 
 obj/:
 	@make -C libft
@@ -67,6 +64,6 @@ clean:
 
 fclean:
 	@make fclean -C libft
-	@rm -rf $(NAME) $(OBJ_PATH) $(NAME_BIS)
+	@rm -rf $(NAME) $(OBJ_PATH) $(NAME)
 
 re: fclean all

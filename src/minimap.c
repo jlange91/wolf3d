@@ -22,7 +22,7 @@ void					display_minimap(t_wolf *wolf)
 	wolf->minimap.mlx_img = mlx_new_image(wolf->mlx, wolf->minimap.width,
 		wolf->minimap.height);
 	wolf->minimap.img = (unsigned int *)mlx_get_data_addr(wolf->minimap.mlx_img,
-		&wolf->minimap.bpb, &wolf->minimap.size_l, &wolf->minimap.endian);
+		&wolf->minimap.bpp, &wolf->minimap.size_l, &wolf->minimap.endian);
 	point_a.x = 0;
 	point_a.y = 0;
 	point_b.x = WIN_X_MINIMAP + 1;

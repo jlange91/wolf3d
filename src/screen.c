@@ -50,7 +50,7 @@ void					display_screen(t_wolf *wolf)
 {
 	wolf->screen.mlx_img = mlx_new_image(wolf->mlx, WIN_X, WIN_Y);
 	wolf->screen.img = (unsigned int *)mlx_get_data_addr(wolf->screen.mlx_img,
-		&wolf->screen.bpb, &wolf->screen.size_l, &wolf->screen.endian);
+		&wolf->screen.bpp, &wolf->screen.size_l, &wolf->screen.endian);
 	wolf->screen.width = WIN_X;
 	wolf->screen.height = WIN_Y;
 
@@ -64,6 +64,14 @@ void					display_screen(t_wolf *wolf)
 	// 	point2.y = WIN_Y;
 	// 		ft_line_wall(point1, point2, &wolf->screen, BLANC);
 	// 	}
+	//
+	// 	for (int i = 0; i < WIN_X; i++){
+	// 		point1.x = i;
+	// 		point2.x = i;
+	// 		point1.y = 0;
+	// 		point2.y = WIN_Y / 2;
+	// 			ft_line_wall(point1, point2, &wolf->screen, BLEU_C);
+	// 		}
 
   for (int i = 0; i < WIN_X; i++){
     point1.x = i;

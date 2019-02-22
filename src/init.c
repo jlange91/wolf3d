@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include <time.h>
 
 static int		place_player(t_wolf *wolf)
 {
@@ -36,10 +37,42 @@ static int		place_player(t_wolf *wolf)
 	return (5);
 }
 
-int				ft_init(t_wolf *wolf, char **av)
+unsigned int 		**create_map(t_wolf *wolf) {
+	unsigned int	**ret;
+	int	i;
+	int	j;
+
+	i = 0;
+	srand(time(NULL));
+	ret = (unsigned int**)malloc(sizeof(unsigned int*) * SIZE_INFINY_MAP);
+	while (i < SIZE_INFINY_MAP)
+	{
+		j = 0;
+		ret[i] = (unsigned int*)malloc(sizeof(unsigned int) * SIZE_INFINY_MAP);
+		while (j < SIZE_INFINY_MAP)
+		{
+			// if (i == 0 || i == 299 || j == 0 || j == 299)
+			// 	ret[i][j] = 1;
+			// else
+				ret[i][j] = ((rand() % 100) > BLOCKS_PERCENT) ? 1 : 0;
+			++j;
+		}
+		++i;
+	}
+	wolf->mapWidth = SIZE_INFINY_MAP;
+	wolf->mapHeigth = SIZE_INFINY_MAP;
+	return (ret);
+}
+
+int				ft_init(t_wolf *wolf, int ac, char **av)
 {
-	if ((wolf->error = ft_fill_tab(wolf, av)))
-		return (wolf->error);
+	if (ac > 1)
+	{
+		if ((wolf->error = ft_fill_tab(wolf, av)))
+			return (wolf->error);
+	}
+	else
+		wolf->map = create_map(wolf);
 	if ((wolf->error = place_player(wolf)))
 		return (wolf->error);
 	wolf->minimap.width = WIN_X_MINIMAP;

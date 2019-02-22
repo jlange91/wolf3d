@@ -62,10 +62,8 @@ void	ft_line_wall(t_point map0, t_point map1, t_image *img, int color)
 	l.sx = map0.x < map1.x ? 1 : -1;
 	l.sy = map0.y < map1.y ? 1 : -1;
 	l.err = (l.dx > l.dy ? l.dx : -l.dy) / 2;
-	while (1)
+	while (!(map0.x == map1.x && map0.y == map1.y))
 	{
-		if ((map0.x == map1.x && map0.y == map1.y))
-			break ;
 		ft_pixel_put(img, map0.x, map0.y, color);
 		l.e2 = l.err;
 		l.err -= (l.e2 > -l.dx) ? l.dy : 0;
@@ -84,10 +82,8 @@ void	ft_line(t_point map0, t_point map1, t_image *img, int color)
 	l.sx = map0.x < map1.x ? 1 : -1;
 	l.sy = map0.y < map1.y ? 1 : -1;
 	l.err = (l.dx > l.dy ? l.dx : -l.dy) / 2;
-	while (1)
+	while (!(map0.x == map1.x && map0.y == map1.y))
 	{
-		if ((map0.x == map1.x && map0.y == map1.y))
-			break ;
 		ft_pixel_put(img, map0.x, map0.y, color);
 		l.e2 = l.err;
 		l.err -= (l.e2 > -l.dx) ? l.dy : 0;

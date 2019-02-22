@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdbool.h>
+# include <limits.h>
 # define AMP 10
 # define ESC 53
 # define LEFT 123
@@ -51,7 +52,7 @@
 # define WIN_X 1800
 # define WIN_Y 1024
 
-#define LENGHT_VIEW 30
+#define LENGHT_VIEW 100
 #define FOV 60
 
 # define WIN_X_MINIMAP 250
@@ -60,8 +61,11 @@
 
 #define START_ANGLE 60
 
-#define SPEED_ROT 10
-#define SPEED_MOOVE 1
+#define SPEED_ROT 5
+#define SPEED_MOOVE 0.5
+
+#define BLOCKS_PERCENT 96
+#define SIZE_INFINY_MAP 200
 
 typedef struct		s_line
 {
@@ -72,17 +76,6 @@ typedef struct		s_line
 	int err;
 	int e2;
 }									t_line;
-
-typedef struct		s_pos
-{
-	unsigned long	x;
-	unsigned long y;
-	int 					type;
-	struct s_pos	*n;
-	struct s_pos	*s;
-	struct s_pos	*e;
-	struct s_pos	*w;
-}									t_pos;
 
 typedef struct		s_point
 {
@@ -120,7 +113,7 @@ typedef struct		s_image
 	unsigned int	*img;
 	int 					width;
 	int 					height;
-	int						bpb;
+	int						bpp;
 	int						size_l;
 	int						endian;
 }									t_image;
@@ -138,11 +131,10 @@ typedef struct		s_wolf
 {
 	void						*mlx;
 	char 						*file;
-	int							**map;
+	unsigned int		**map;
 	int 						mapWidth;
 	int 						mapHeigth;
 	double					radius;
-	t_pos						pos;
 	double					posX;
 	double					posY;
 	double					spaceInterRadius;
@@ -158,7 +150,7 @@ typedef struct		s_wolf
 	int							error;
 }									t_wolf;
 
-int								ft_init(t_wolf *wolf, char **av);
+int								ft_init(t_wolf *wolf, int ac, char **av);
 void 							ft_free(t_wolf *wolf);
 void 							ft_error(int error);
 void							ft_wolf(t_wolf *wolf);
@@ -185,6 +177,7 @@ t_intersection 		search_intersection(t_wolf *wolf, t_intersection inter);
 void  						search_intersections(t_wolf *wolf);
 
 void 							ft_search_intersections(t_wolf *wolf);
+double ret_uchar(double nb);
 
 void							display_minimap(t_wolf *wolf);
 void 							minimap_draw_angle(t_wolf *wolf);

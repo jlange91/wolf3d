@@ -24,6 +24,20 @@ static inline void		ft_display_hook1(int keycode, t_wolf *wolf)
 	}
 }
 
+double ret_uchar(double nb)
+{
+	double ret;
+
+	ret = 0;
+	if (nb < 0)
+		ret = nb + SIZE_INFINY_MAP;
+	else if (nb >= SIZE_INFINY_MAP)
+		ret = nb - SIZE_INFINY_MAP;
+	else
+		ret = nb;
+	return (ret);
+}
+
 int						ft_display_hook(int keycode, void *test)
 {
 	t_wolf *wolf;
@@ -56,29 +70,30 @@ int						ft_display_hook(int keycode, void *test)
 			double posX;
 			double posY;
 
-			posX = wolf->posX + d_cos(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
-			posY = wolf->posY + d_sin(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
+			posX = ret_uchar(wolf->posX + d_cos(wolf->radius + (FOV / 2)) * SPEED_MOOVE);
+			posY = ret_uchar(wolf->posY + d_sin(wolf->radius + (FOV / 2)) * SPEED_MOOVE);
 			if (posX >= wolf->mapWidth || posX < 0 ||
 				 posY >= wolf->mapHeigth || posY < 0)
 				return (0);
-			if (!wolf->map[(int)(wolf->posY)][(int)(posX)])
+			if (!wolf->map[(unsigned int)(wolf->posY)][(unsigned int)(posX)])
 				wolf->posX = posX;
-			if (!wolf->map[(int)(posY)][(int)(wolf->posX)])
+			if (!wolf->map[(unsigned int)(posY)][(unsigned int)(wolf->posX)])
 				wolf->posY = posY;
+
 		}
 		else
 		{
 			double posX;
 			double posY;
 
-			posX = wolf->posX - d_cos(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
-			posY = wolf->posY - d_sin(wolf->radius + (FOV / 2)) * SPEED_MOOVE;
+			posX = ret_uchar(wolf->posX - d_cos(wolf->radius + (FOV / 2)) * SPEED_MOOVE);
+			posY = ret_uchar(wolf->posY - d_sin(wolf->radius + (FOV / 2)) * SPEED_MOOVE);
 			if (posX >= wolf->mapWidth || posX < 0 ||
 				 posY >= wolf->mapHeigth || posY < 0)
 				return (0);
-			if (!wolf->map[(int)(wolf->posY)][(int)(posX)])
+			if (!wolf->map[(unsigned int)(wolf->posY)][(unsigned int)(posX)])
 				wolf->posX = posX;
-			if (!wolf->map[(int)(posY)][(int)(wolf->posX)])
+			if (!wolf->map[(unsigned int)(posY)][(unsigned int)(wolf->posX)])
 				wolf->posY = posY;
 		}
 		ft_wolf(wolf);
