@@ -46,6 +46,56 @@ void	display_column(t_wolf *wolf, int x, int y1, int y2, int test, double x1, do
 	}
 }
 
+void floor_casting(t_wolf *wolf, t_intersection *inter, int x)
+{
+	int pixel;
+	unsigned int	color = 0;
+	int drawEnd = (WIN_Y / 2) + (inter->wall / 2);
+	//FLOOR CASTING
+ double floorXWall, floorYWall; //x, y position of the floor texel at the bottom of the wall
+
+ floorXWall = inter->point.x;
+ floorYWall = inter->point.y;
+
+ double distWall, distPlayer, currentDist;
+
+ distWall = inter->dist_wfe;
+ distPlayer = 0.0;
+
+
+ //draw the floor from drawEnd to the bottom of the screen
+ for(int y = drawEnd + 1; y < WIN_Y; y++)
+ {
+		currentDist = WIN_Y / (2.0 * y - WIN_Y); //you could make a small lookup table for this instead
+
+		double weight = (currentDist - distPlayer) / (distWall - distPlayer);
+
+		double currentFloorX = weight * floorXWall + (1.0 - weight) * wolf->posX;
+		double currentFloorY = weight * floorYWall + (1.0 - weight) * wolf->posY;
+
+		int floorTexX, floorTexY;
+		floorTexX = (int)(fmod(currentFloorX * wolf->wall[4].width, wolf->wall[4].width));
+		floorTexY = (int)(fmod(currentFloorY * wolf->wall[4].height, wolf->wall[4].height));
+
+		pixel = (floorTexY * wolf->wall[4].width) + floorTexX;
+		if (pixel >= 0 && pixel < (wolf->wall[4].height * wolf->wall[4].width) - 1)
+		 color = wolf->wall[4].img[pixel];
+	 	color = set_color(currentDist, color);
+		pixel = (y * WIN_X) + x;
+		if ((x >= 0 && x < WIN_X))
+			wolf->screen.img[pixel] = color;
+		pixel = ((WIN_Y - y) * WIN_X) + x;
+		if ((x >= 0 && x < WIN_X))
+			wolf->screen.img[pixel] = color;
+
+
+	 // //floor
+	 // buffer[y][x] = (texture[3][texWidth * floorTexY + floorTexX] >> 1) & 8355711;
+	 // //ceiling (symmetrical!)
+	 // buffer[h - y][x] = texture[6][texWidth * floorTexY + floorTexX];
+ }
+}
+
 void					display_screen(t_wolf *wolf)
 {
 	wolf->screen.mlx_img = mlx_new_image(wolf->mlx, WIN_X, WIN_Y);
@@ -89,6 +139,8 @@ void					display_screen(t_wolf *wolf)
 			display_column(wolf, i, point1.y, point2.y, wolf->inter[i].hit - 1,
 				(wolf->inter[i].hit == 1 || wolf->inter[i].hit == 2) ? wolf->inter[i].point.x : wolf->inter[i].point.y, wolf->inter[i].dist_wfe);
 		}
+		floor_casting(wolf, &wolf->inter[i], i);
+
   }
 
 

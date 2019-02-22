@@ -14,7 +14,7 @@
 
 void	init_textures(t_wolf *wolf)
 {
-	char	*str[4];
+	char	*str[5];
 	int		i;
 
 	i = 0;
@@ -22,7 +22,8 @@ void	init_textures(t_wolf *wolf)
 	str[1] = "texture/wall2.xpm";
 	str[2] = "texture/wall3.xpm";
 	str[3] = "texture/wall4.xpm";
-	while (i < 4)
+	str[4] = "texture/floor.xpm";
+	while (i < 5)
 	{
 		wolf->wall[i].mlx_img = mlx_xpm_file_to_image(wolf->mlx, str[i],
 				&wolf->wall[i].width, &wolf->wall[i].height);

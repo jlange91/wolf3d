@@ -55,15 +55,15 @@
 # define WIN_Y_MINIMAP 200
 # define START_ANGLE 60
 
-# define LENGHT_VIEW 100
+# define LENGHT_VIEW 30
 # define FOV 60
 # define MINIMAP_ZOOM 1
 
 # define SPEED_ROT 5
 # define SPEED_MOOVE 0.5
 
-# define BLOCKS_PERCENT 96
-# define SIZE_INFINY_MAP 1000
+# define BLOCKS_PERCENT 95
+# define SIZE_INFINY_MAP 200
 
 # define DISCOVER 0
 
@@ -149,7 +149,7 @@ typedef struct		s_wolf
 	t_image					minimap;
 	t_image					screen;
 	t_intersection	inter[WIN_X];
-	t_image					wall[4];
+	t_image					wall[5];
 	long double			hpp; //hauteur par pixel;
 	int							minimapX;
 	int							minimapY;
