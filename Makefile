@@ -41,6 +41,7 @@ SRC_NAME =  main.c							\
 						minimap.c				 		\
 						screen.c 						\
 						math.c 							\
+						floor_casting.c 		\
 
 OBJ = $(SRC_NAME:.c=.o)
 
@@ -49,7 +50,7 @@ OBJS = $(addprefix obj/, $(OBJ))
 all: $(NAME)
 
 $(NAME): obj/ $(OBJS)
-	@$(CC) -g $(OBJS) libft/libft.a mlxCapitan/libmlx.a -framework OpenGl -framework AppKit -o $(NAME) -fsanitize=address 
+	@$(CC) -g $(OBJS) libft/libft.a mlxCapitan/libmlx.a -framework OpenGl -framework AppKit -o $(NAME) -fsanitize=address
 
 obj/:
 	@make -C libft

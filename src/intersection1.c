@@ -14,7 +14,8 @@ void  search_intersections(t_wolf *wolf)
 	{
     wolf->inter[i].angle = startAngle;
 		wolf->inter[i] = search_intersection(wolf, wolf->inter[i]);
-		wolf->inter[i].wall = ((WIN_X / 2) / d_tan(30)) / wolf->inter[i].dist_wfe;
+		wolf->inter[i].wall = WIN_Y / wolf->inter[i].dist_wfe;
+		// printf("%f\n", wolf->inter[i].dist_wfe);
 		startAngle += wolf->spaceInterRadius;
 		startAngle -= (startAngle >= 360.) ? 360 : 0;
 		++i;

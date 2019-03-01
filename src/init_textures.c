@@ -14,7 +14,7 @@
 
 void	init_textures(t_wolf *wolf)
 {
-	char	*str[5];
+	char	*str[6];
 	int		i;
 
 	i = 0;
@@ -23,19 +23,20 @@ void	init_textures(t_wolf *wolf)
 	str[2] = "texture/wall3.xpm";
 	str[3] = "texture/wall4.xpm";
 	str[4] = "texture/floor.xpm";
-	while (i < 5)
+	str[5] = "texture/ceil.xpm";
+	while (i < 6)
 	{
-		wolf->wall[i].mlx_img = mlx_xpm_file_to_image(wolf->mlx, str[i],
-				&wolf->wall[i].width, &wolf->wall[i].height);
-		if (!wolf->wall[i].mlx_img)
+		wolf->text[i].mlx_img = mlx_xpm_file_to_image(wolf->mlx, str[i],
+				&wolf->text[i].width, &wolf->text[i].height);
+		if (!wolf->text[i].mlx_img)
 		{
 			ft_putstr_fd("Warning: Missing file ", 2);
 			ft_putendl_fd(str[i], 2);
 		}
 		else
-			wolf->wall[i].img = (unsigned int *)mlx_get_data_addr(
-					wolf->wall[i].mlx_img, &wolf->wall[i].bpp,
-					&wolf->wall[i].size_l, &wolf->wall[i].endian);
+			wolf->text[i].img = (unsigned int *)mlx_get_data_addr(
+					wolf->text[i].mlx_img, &wolf->text[i].bpp,
+					&wolf->text[i].size_l, &wolf->text[i].endian);
 		++i;
 	}
 }

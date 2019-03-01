@@ -26,8 +26,8 @@ void	ft_free(t_wolf *wolf)
 	y = 0;
 	while (y < 4)
 	{
-		if (wolf->wall[y].mlx_img)
-			mlx_destroy_image(wolf->mlx, wolf->wall[y].mlx_img);
+		if (wolf->text[y].mlx_img)
+			mlx_destroy_image(wolf->mlx, wolf->text[y].mlx_img);
 		++y;
 	}
 }

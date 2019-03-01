@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 17:56:39 by jlange            #+#    #+#             */
-/*   Updated: 2019/01/28 17:53:53 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/01 14:54:43 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,17 @@
 # define WIN_Y_MINIMAP 200
 # define START_ANGLE 60
 
-# define LENGHT_VIEW 30
-# define FOV 60
-# define MINIMAP_ZOOM 1
+# define LENGHT_VIEW 15
+# define FOV 360
+# define MINIMAP_ZOOM 4
 
-# define SPEED_ROT 5
+# define SPEED_ROT 10
 # define SPEED_MOOVE 0.5
 
 # define BLOCKS_PERCENT 95
 # define SIZE_INFINY_MAP 200
 
-# define DISCOVER 0
+# define DISCOVER 1
 
 typedef struct		s_line
 {
@@ -149,7 +149,7 @@ typedef struct		s_wolf
 	t_image					minimap;
 	t_image					screen;
 	t_intersection	inter[WIN_X];
-	t_image					wall[5];
+	t_image					text[6];
 	long double			hpp; //hauteur par pixel;
 	int							minimapX;
 	int							minimapY;
@@ -157,6 +157,21 @@ typedef struct		s_wolf
 	int							error;
 	int							discover;
 }									t_wolf;
+
+typedef struct		s_fc
+{
+	int						y;
+	int 					drawEnd;
+	double 				floorXWall;
+	double				floorYWall;
+	double 				distWall;
+	double			  currentDist;
+	double 				weight;
+	double 				currentFloorX;
+	double 				currentFloorY;
+	int 					floorTexX;
+	int						floorTexY;
+}									t_fc;
 
 int								ft_init(t_wolf *wolf, int ac, char **av);
 void 							ft_free(t_wolf *wolf);
@@ -197,6 +212,8 @@ void 							init_screen(t_wolf *wolf);
 void							display_screen(t_wolf *wolf);
 
 void	ft_line_wall(t_point map0, t_point map1, t_image *img, int color);
+void floor_ceil_casting(t_wolf *wolf, t_intersection *inter, int x);
+unsigned int	set_color(double dist, unsigned int color);
 
 // void create_blocks(t_wolf *wolf, unsigned long x, unsigned long y);
 

@@ -12,6 +12,26 @@
 
 #include "wolf3d.h"
 
+unsigned int	set_color(double dist, unsigned int color)
+{
+	unsigned int coef;
+	unsigned int red;
+	unsigned int green;
+	unsigned int blue;
+
+	coef = dist * 100 / LENGHT_VIEW;
+	red = ((color & 0xFF0000) >> 16) * (100 - coef) / 100;
+	red = (red > 0xFF) ? 0 : red;
+	green = ((color & 0xFF00) >> 8) * (100 - coef) / 100;
+	green = (green > 0xFF) ? 0 : green;
+	blue = ((color & 0xFF)) * (100 - coef) / 100;
+	blue = (blue > 0xFF) ? 0 : blue;
+	color = (red << 16) + (color & 0x00FFFF);
+	color = (green << 8) + (color & 0xFF00FF);
+	color = blue + (color & 0xFFFF00);
+	return (color);
+}
+
 t_dpoint endpoint2(double angle, double x1 , double y1, double lenght)
 {
 	t_dpoint ret;
