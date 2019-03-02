@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 15:51:53 by jlange            #+#    #+#             */
-/*   Updated: 2019/01/28 17:41:17 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/02 00:39:35 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,40 +32,18 @@ unsigned int	set_color(double dist, unsigned int color)
 	return (color);
 }
 
-t_dpoint endpoint2(double angle, double x1 , double y1, double lenght)
-{
-	t_dpoint ret;
-	double radians = (M_PI/180) * angle;
-
-	double x2 = x1 + (lenght * cos(radians));
-	double y2 = y1 + (lenght * sin(radians));
-	ret.x = x2;
-	ret.y = y2;
-	return (ret);
-}
-
-t_point endpoint(double angle, int x1 , int y1, double lenght)
-{
-	t_point ret;
-	double radians = (M_PI/180)*angle;
-
-	double x2 = x1 + (lenght * cos(radians));
-	double y2 = y1 + (lenght * sin(radians));
-	ret.x = round(x2);
-	ret.y = round(y2);
-	return (ret);
-}
-
-void	ft_pixel_put(t_image *img, int x, int y, int color)
+void			ft_pixel_put(t_image *img, int x, int y, int color)
 {
 	int pixel;
 
 	pixel = (y * img->width) + x;
-	if (x > 0 && x < img->width && y > 0 && y < img->height && pixel > img->width)
+	if (x > 0 && x < img->width && y > 0 &&
+		y < img->height && pixel > img->width)
 		img->img[pixel] = color;
 }
 
-void	ft_line_wall(t_point map0, t_point map1, t_image *img, int color)
+void			ft_line_wall(t_point map0, t_point map1, t_image *img,
+		int color)
 {
 	t_line l;
 
@@ -93,7 +71,7 @@ void	ft_line_wall(t_point map0, t_point map1, t_image *img, int color)
 	}
 }
 
-void	ft_line(t_point map0, t_point map1, t_image *img, int color)
+void			ft_line(t_point map0, t_point map1, t_image *img, int color)
 {
 	t_line l;
 
@@ -113,44 +91,19 @@ void	ft_line(t_point map0, t_point map1, t_image *img, int color)
 	}
 }
 
-void      ft_draw_rectangle(t_point map0, t_point map1, t_image *img, int color)
+void			ft_draw_rectangle(t_point map0, t_point map1, t_image *img,
+		int color)
 {
-	t_point pointA;
-	t_point pointB;
+	t_point point_a;
+	t_point point_b;
 
 	while (map0.x < map1.x)
 	{
-		pointA.x = map0.x;
-		pointA.y = map0.y;
-		pointB.x = map0.x;
-		pointB.y = map1.y;
-		ft_line(pointA, pointB, img, color);
+		point_a.x = map0.x;
+		point_a.y = map0.y;
+		point_b.x = map0.x;
+		point_b.y = map1.y;
+		ft_line(point_a, point_b, img, color);
 		map0.x += 1;
 	}
-}
-
-int		ft_redcross(t_wolf *wolf)
-{
-	ft_free(wolf);
-	exit(0);
-}
-
-double toRadian(double degree)
-{
-	return ((degree) * M_PI / 180.0);
-}
-
-double	dCos(double degree)
-{
-	return cos(toRadian(degree));
-}
-
-double	dSin(double degree)
-{
-	return sin(toRadian(degree));
-}
-
-double	dTan(double degree)
-{
-	return tan(toRadian(degree));
 }

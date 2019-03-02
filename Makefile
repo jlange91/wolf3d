@@ -31,6 +31,7 @@ SRC_NAME =  main.c							\
 						display_hook.c			\
 						fill_tab.c					\
 						tools.c							\
+						tools2.c						\
 						error.c 						\
 						free.c 							\
 						init_textures.c 		\

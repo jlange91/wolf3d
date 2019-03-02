@@ -49,21 +49,21 @@
 # define MARON_C 0xC37612
 # define JAUNE 0xF2F266
 
-# define WIN_X 1800
-# define WIN_Y 1024
+# define WIN_X 900
+# define WIN_Y 740
 # define WIN_X_MINIMAP 250
 # define WIN_Y_MINIMAP 200
 # define START_ANGLE 60
 
-# define LENGHT_VIEW 15
-# define FOV 360
+# define LENGHT_VIEW 80
+# define FOV 60
 # define MINIMAP_ZOOM 4
 
 # define SPEED_ROT 10
 # define SPEED_MOOVE 0.5
 
 # define BLOCKS_PERCENT 95
-# define SIZE_INFINY_MAP 200
+# define SIZE_INFINY_MAP 1000
 
 # define DISCOVER 1
 
@@ -91,7 +91,7 @@ typedef struct		s_dpoint
 
 typedef struct		s_intersection
 {
-	t_dpoint				point;
+	t_dpoint			point;
 	double				dist;
 	double				dist_wfe; //dist without fisheyes
 	int						wall;
@@ -138,7 +138,6 @@ typedef struct		s_wolf
 	void						*mlx;
 	char 						*file;
 	t_map						**map;
-	unsigned int		**map2;
 	int 						mapWidth;
 	int 						mapHeigth;
 	double					radius;
@@ -173,6 +172,21 @@ typedef struct		s_fc
 	int						floorTexY;
 }									t_fc;
 
+typedef struct		s_m
+{
+	double 			max_x;
+	double 			max_y;
+	t_point			point_a;
+	t_point			point_b;
+	double			rx;
+	double			ry;
+	double			dx;
+	double			dy;
+	double			x;
+	double			y;
+}									t_m;
+
+
 int								ft_init(t_wolf *wolf, int ac, char **av);
 void 							ft_free(t_wolf *wolf);
 void 							ft_error(int error);
@@ -205,7 +219,6 @@ double resize_double(double nb);
 void							display_minimap(t_wolf *wolf);
 void 							minimap_draw_angle(t_wolf *wolf);
 void 							minimap_draw_map(t_wolf *wolf);
-void 							minimap_draw_cadriage(t_wolf *wolf);
 void 							minimap_draw_perso(t_wolf *wolf);
 
 void 							init_screen(t_wolf *wolf);
@@ -214,9 +227,6 @@ void							display_screen(t_wolf *wolf);
 void	ft_line_wall(t_point map0, t_point map1, t_image *img, int color);
 void floor_ceil_casting(t_wolf *wolf, t_intersection *inter, int x);
 unsigned int	set_color(double dist, unsigned int color);
-
-// void create_blocks(t_wolf *wolf, unsigned long x, unsigned long y);
-
 
 
 #endif

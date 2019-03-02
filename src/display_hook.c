@@ -24,20 +24,6 @@ static inline void		ft_display_hook1(int keycode, t_wolf *wolf)
 	}
 }
 
-double resize_double(double nb)
-{
-	double ret;
-
-	ret = 0;
-	if (nb < 0)
-		ret = nb + SIZE_INFINY_MAP;
-	else if (nb >= SIZE_INFINY_MAP)
-		ret = nb - SIZE_INFINY_MAP;
-	else
-		ret = nb;
-	return (ret);
-}
-
 int						ft_display_hook(int keycode, void *test)
 {
 	t_wolf *wolf;

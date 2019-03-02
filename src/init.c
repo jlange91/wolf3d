@@ -6,7 +6,7 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 17:04:57 by jlange            #+#    #+#             */
-/*   Updated: 2019/01/28 17:05:09 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/02 00:42:01 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static int		place_player(t_wolf *wolf)
 {
-	int y;
-	int x;
+	int		y;
+	int		x;
 
 	y = 0;
 	while (y < wolf->mapHeigth)
@@ -37,10 +37,11 @@ static int		place_player(t_wolf *wolf)
 	return (5);
 }
 
-t_map 		**create_map(t_wolf *wolf) {
+t_map			**create_map(t_wolf *wolf)
+{
 	t_map	**ret;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	srand(time(NULL));

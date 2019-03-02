@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 14:23:16 by jlange            #+#    #+#             */
-/*   Updated: 2019/01/28 17:08:01 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/02 00:44:39 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void					display_minimap(t_wolf *wolf)
 	point_b.x = WIN_X_MINIMAP + 1;
 	point_b.y = WIN_Y_MINIMAP + 1;
 	ft_draw_rectangle(point_a, point_b, &wolf->minimap, 0xFF000000);
-	// minimap_draw_cadriage(wolf);
 	minimap_draw_map(wolf);
 	minimap_draw_angle(wolf);
 	minimap_draw_perso(wolf);

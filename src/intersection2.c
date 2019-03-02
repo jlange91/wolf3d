@@ -22,9 +22,9 @@ t_dpoint find_first_dist(double posX, double posY, double angle)
 	t_dpoint dist;
 
 	x = (angle > 90 && angle < 270) ? fabs(fmod(posX, 1)) :
-																		fabs(fmod(posX, 1) - 1);
+		fabs(fmod(posX, 1) - 1);
 	y = (angle > 180) ? fabs(fmod(posY, 1)) :
-											fabs(fmod(posY, 1) - 1);
+		fabs(fmod(posY, 1) - 1);
 	xA = fabs(y / d_tan(angle));
 	yA = fabs(x * d_tan(angle));
 	dist.x = sqrt(xA * xA + y * y);
@@ -58,21 +58,19 @@ t_intersection search_intersection(t_wolf *wolf, t_intersection inter)
 		{
 			if (first_dist.x >= LENGHT_VIEW)
 				break ;
-      inter.dist = first_dist.x;
-      inter.hit = (inter.angle > 180) ? 1 : 2;
+			inter.dist = first_dist.x;
+			inter.hit = (inter.angle > 180) ? 1 : 2;
 			first_dist.x += dist.x;
-			mapY += stepY;
-			mapY = resize_double(mapY);
+			mapY = resize_double(mapY + stepY);
 		}
 		else
 		{
 			if (first_dist.y >= LENGHT_VIEW)
 				break ;
-      inter.dist = first_dist.y;
-      inter.hit = (inter.angle > 90 && inter.angle < 270) ? 3 : 4;
+			inter.dist = first_dist.y;
+			inter.hit = (inter.angle > 90 && inter.angle < 270) ? 3 : 4;
 			first_dist.y += dist.y;
-			mapX += stepX;
-			mapX = resize_double(mapX);
+			mapX = resize_double(mapX + stepX);
 		}
 		if ((mapX >= 0 && mapX < wolf->mapWidth) &&
 				(mapY >= 0 && mapY < wolf->mapHeigth) &&
@@ -84,10 +82,10 @@ t_intersection search_intersection(t_wolf *wolf, t_intersection inter)
 	}
 
 	if (hit == 0)
-  {
-    inter.dist = LENGHT_VIEW;
-    inter.hit = 0;
-  }
+	{
+		inter.dist = LENGHT_VIEW;
+		inter.hit = 0;
+	}
 	if (inter.hit == 0)
 		inter.color = 0;
 	else if (inter.hit == 1)
@@ -109,5 +107,5 @@ t_intersection search_intersection(t_wolf *wolf, t_intersection inter)
 	}
 	else
 		inter.dist_wfe = inter.dist;
-  return (inter);
+	return (inter);
 }
