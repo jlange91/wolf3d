@@ -52,7 +52,7 @@ OBJS = $(addprefix obj/, $(OBJ))
 all: $(NAME)
 
 $(NAME): obj/ $(OBJS)
-	@$(CC) -g $(OBJS) libft/libft.a mlxCapitan/libmlx.a -framework OpenGl -framework AppKit -o $(NAME)
+	@$(CC) -g $(OBJS) libft/libft.a mlxCapitan/libmlx.a -framework OpenGl -framework AppKit -o $(NAME) -fsanitize=address
 
 obj/:
 	@make -C libft

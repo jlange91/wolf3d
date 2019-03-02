@@ -6,7 +6,7 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 17:04:57 by jlange            #+#    #+#             */
-/*   Updated: 2019/03/02 06:40:22 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/02 07:27:41 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,40 +37,36 @@ static int		place_player(t_wolf *wolf)
 	return (5);
 }
 
-t_map			**create_map(t_wolf *wolf)
+int				create_map(t_wolf *wolf)
 {
-	t_map	**ret;
 	int		i;
 	int		j;
 
 	i = 0;
 	srand(time(NULL));
-	ret = (t_map**)malloc(sizeof(t_map*) * SIZE_INFINY_MAP);
+	if (!(wolf->map = (t_map**)malloc(sizeof(t_map*) * SIZE_INFINY_MAP)))
+		return (2);
 	while (i < SIZE_INFINY_MAP)
 	{
 		j = -1;
-		ret[i] = (t_map*)malloc(sizeof(t_map) * SIZE_INFINY_MAP);
+		if (!(wolf->map[i] = (t_map*)malloc(sizeof(t_map) * SIZE_INFINY_MAP)))
+			return (2);
 		while (++j < SIZE_INFINY_MAP)
 		{
-			ret[i][j].type = ((rand() % 100) > BLOCKS_PERCENT) ? 1 : 0;
-			ret[i][j].discover = DISCOVER;
+			wolf->map[i][j].type = ((rand() % 100) > BLOCKS_PERCENT) ? 1 : 0;
+			wolf->map[i][j].discover = DISCOVER;
 		}
 		++i;
 	}
 	wolf->map_width = SIZE_INFINY_MAP;
 	wolf->map_height = SIZE_INFINY_MAP;
-	return (ret);
+	return (0);
 }
 
 int				ft_init(t_wolf *wolf, int ac, char **av)
 {
-	if (ac > 1)
-	{
-		if ((wolf->error = ft_fill_tab(wolf, av)))
-			return (wolf->error);
-	}
-	else
-		wolf->map = create_map(wolf);
+	if ((wolf->error = (ac > 1) ? ft_fill_tab(wolf, av) : create_map(wolf)))
+		return (wolf->error);
 	if ((wolf->error = place_player(wolf)))
 		return (wolf->error);
 	wolf->length_view = LENGTH_VIEW;
