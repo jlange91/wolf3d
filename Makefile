@@ -52,10 +52,11 @@ OBJS = $(addprefix obj/, $(OBJ))
 all: $(NAME)
 
 $(NAME): obj/ $(OBJS)
-	@$(CC) -g $(OBJS) libft/libft.a mlxCapitan/libmlx.a -framework OpenGl -framework AppKit -o $(NAME) -fsanitize=address
+	@$(CC) $(OBJS) libft/libft.a mlxSierra/libmlx.a -framework OpenGl -framework AppKit -o $(NAME)
 
 obj/:
 	@make -C libft
+	@make -C mlxSierra
 	@mkdir $(OBJ_PATH) 2> /dev/null
 
 obj/%.o: src/%.c $(HEADER)
@@ -63,10 +64,12 @@ obj/%.o: src/%.c $(HEADER)
 
 clean:
 	@make clean -C libft
+	@make clean -C mlxSierra
 	@rm -rf $(OBJ_PATH)
 
 fclean:
 	@make fclean -C libft
+	@make clean -C mlxSierra
 	@rm -rf $(NAME) $(OBJ_PATH) $(NAME)
 
 re: fclean all
