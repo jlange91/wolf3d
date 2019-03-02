@@ -12,14 +12,14 @@
 
 #include "wolf3d.h"
 
-unsigned int	set_color(double dist, unsigned int color)
+unsigned int	set_color(double dist, unsigned int color, int length_view)
 {
 	unsigned int coef;
 	unsigned int red;
 	unsigned int green;
 	unsigned int blue;
 
-	coef = dist * 100 / LENGHT_VIEW;
+	coef = dist * 100 / length_view;
 	red = ((color & 0xFF0000) >> 16) * (100 - coef) / 100;
 	red = (red > 0xFF) ? 0 : red;
 	green = ((color & 0xFF00) >> 8) * (100 - coef) / 100;

@@ -12,6 +12,30 @@
 
 #include "wolf3d.h"
 
+static inline void		ft_display_hook2(int keycode, t_wolf *wolf)
+{
+	if (keycode == DIST_MINUS)
+	{
+		wolf->length_view -= (wolf->length_view > 1) ? 1 : 0;
+		ft_wolf(wolf);
+	}
+	else if (keycode == DIST_PLUS)
+	{
+		wolf->length_view += (wolf->length_view < 1000000) ? 1 : 0;
+		ft_wolf(wolf);
+	}
+	else if (keycode == FOV_MINUS)
+	{
+		wolf->fov -= (wolf->fov > 10) ? 1 : 0;
+		ft_wolf(wolf);
+	}
+	else if (keycode == FOV_PLUS)
+	{
+		wolf->fov += (wolf->fov < 360) ? 1 : 0;
+		ft_wolf(wolf);
+	}
+}
+
 static inline void		ft_display_hook1(int keycode, t_wolf *wolf)
 {
 	if (keycode == MINUS || keycode == PLUS)
@@ -35,6 +59,8 @@ static inline void		ft_display_hook1(int keycode, t_wolf *wolf)
 		wolf->fisheyes = (wolf->fisheyes == 0) ? 1 : 0;
 		ft_wolf(wolf);
 	}
+	else
+		ft_display_hook2(keycode, wolf);
 }
 
 int						ft_display_hook(int keycode, void *test)

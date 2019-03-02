@@ -29,7 +29,7 @@ static inline void	raycasting(t_wolf *wolf, t_intersection *inter, t_si *i)
 	{
 		if (i->first_dist.x < i->first_dist.y || i->first_dist.y == INFINITY)
 		{
-			if (i->first_dist.x >= LENGHT_VIEW)
+			if (i->first_dist.x >= wolf->length_view)
 				break ;
 			inter->dist = i->first_dist.x;
 			inter->hit = (inter->angle > 180) ? 1 : 2;
@@ -38,7 +38,7 @@ static inline void	raycasting(t_wolf *wolf, t_intersection *inter, t_si *i)
 		}
 		else
 		{
-			if (i->first_dist.y >= LENGHT_VIEW)
+			if (i->first_dist.y >= wolf->length_view)
 				break ;
 			inter->dist = i->first_dist.y;
 			inter->hit = (inter->angle > 90 && inter->angle < 270) ? 3 : 4;
@@ -57,7 +57,7 @@ static inline void	remove_fisheyes(t_wolf *wolf, t_intersection *inter)
 
 	if (!wolf->fisheyes)
 	{
-		middle = wolf->radius + (FOV / 2);
+		middle = wolf->radius + (wolf->fov / 2);
 		angle = (inter->angle < wolf->radius) ?
 			inter->angle + 360 : inter->angle;
 		diff = (middle > angle) ? angle - middle : middle - angle;
@@ -75,7 +75,7 @@ t_intersection		search_intersection(t_wolf *wolf, t_intersection inter)
 	raycasting(wolf, &inter, &i);
 	if (i.hit == 0)
 	{
-		inter.dist = LENGHT_VIEW;
+		inter.dist = wolf->length_view;
 		inter.hit = 0;
 	}
 	if (inter.hit == 0)
@@ -103,6 +103,7 @@ void				search_intersections(t_wolf *wolf)
 	map0.x = wolf->posx;
 	map0.y = wolf->posy;
 	start_angle = wolf->radius;
+	wolf->space_inter_radius = (double)wolf->fov / (double)WIN_X;
 	while (i < WIN_X)
 	{
 		wolf->inter[i].angle = start_angle;

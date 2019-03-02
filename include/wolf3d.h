@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 17:56:39 by jlange            #+#    #+#             */
-/*   Updated: 2019/03/02 04:14:12 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/02 07:00:53 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,18 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <limits.h>
-# define AMP 10
 # define ESC 53
 # define LEFT 123
 # define RIGHT 124
 # define UP 126
 # define DOWN 125
-# define ZOOM 12
-# define DEZOOM 14
 # define PLUS 27
 # define MINUS 24
-# define PROJECTION 35
-# define COLOR 8
-# define ROT_Y1 13
-# define ROT_X1 0
-# define ROT_Y2 1
-# define ROT_X2 2
-# define ROT_Z1 15
 # define FISHEYES 3
-# define MUL_COLOR1 6
-# define MUL_COLOR2 7
+# define DIST_MINUS 18
+# define DIST_PLUS 19
+# define FOV_MINUS 20
+# define FOV_PLUS 21
 # define BLANC 0x00FFFFFF
 # define VERT_F 0x428C01
 # define VERT_C 0x25FA3A
@@ -53,7 +45,7 @@
 # define WIN_X_MINIMAP 250
 # define WIN_Y_MINIMAP 200
 # define START_ANGLE 60
-# define LENGHT_VIEW 20
+# define LENGTH_VIEW 20
 # define FOV 60
 # define MINIMAP_ZOOM 4
 # define SPEED_ROT 10
@@ -143,7 +135,8 @@ typedef struct		s_wolf
 	int				minimapy;
 	t_minimap		mm_info;
 	int				error;
-	int				discover;
+	int				length_view;
+	int				fov;
 }					t_wolf;
 
 typedef struct		s_fc
@@ -231,7 +224,7 @@ void				ft_line_wall(t_point map0, t_point map1, t_image *img,
 		int color);
 void				floor_ceil_casting(t_wolf *wolf, t_intersection *inter,
 		int x);
-unsigned int		set_color(double dist, unsigned int color);
+unsigned int		set_color(double dist, unsigned int color, int length_view);
 t_si				init_search_intersection(t_wolf *wolf,
 		t_intersection inter);
 void				forward(t_wolf *wolf);

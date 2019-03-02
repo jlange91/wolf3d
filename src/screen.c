@@ -39,7 +39,7 @@ void					display_column(t_wolf *wolf, int x, int y1, int y2)
 		if (c.pixel >= 0 && c.pixel <
 				(wolf->text[c.text].height * wolf->text[c.text].width) - 1)
 			c.color = wolf->text[c.text].img[c.pixel];
-		c.color = set_color(c.dist, c.color);
+		c.color = set_color(c.dist, c.color, wolf->length_view);
 		c.pixel = (y1 * WIN_X) + x;
 		if ((x >= 0 && x < WIN_X))
 			wolf->screen.img[c.pixel] = c.color;
@@ -64,7 +64,8 @@ static inline void		display_screen_loop(t_wolf *wolf)
 		if (wolf->inter[x].hit <= 0 || wolf->inter[x].hit > 4 ||
 				wolf->text[wolf->inter[x].hit - 1].mlx_img == NULL)
 			ft_line_wall(point1, point2, &wolf->screen,
-					set_color(wolf->inter[x].dist_wfe, wolf->inter[x].color));
+					set_color(wolf->inter[x].dist_wfe, wolf->inter[x].color,
+						wolf->length_view));
 		else
 		{
 			wolf->hpp = (double)wolf->inter[x].wall /

@@ -105,7 +105,7 @@ int				ft_fill_tab(t_wolf *wolf, char **av)
 	y = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
-		ft_fill_map(line, wolf->map[y], wolf->discover);
+		ft_fill_map(line, wolf->map[y], DISCOVER);
 		y++;
 		free(line);
 	}

@@ -31,7 +31,7 @@ static inline void	ceil_casting(t_wolf *wolf, t_fc c, int x)
 	}
 	else
 		color = BLEU_C;
-	color = set_color(c.current_dist, color);
+	color = set_color(c.current_dist, color, wolf->length_view);
 	pixel = ((WIN_Y - c.y) * WIN_X) + x;
 	if (pixel >= 0 && pixel < (wolf->screen.height * wolf->screen.width) - 1)
 		wolf->screen.img[pixel] = color;
@@ -56,7 +56,7 @@ static inline void	floor_casting(t_wolf *wolf, t_fc c, int x)
 	}
 	else
 		color = MARON_F;
-	color = set_color(c.current_dist, color);
+	color = set_color(c.current_dist, color, wolf->length_view);
 	pixel = (c.y * WIN_X) + x;
 	if (pixel >= 0 && pixel < (wolf->screen.height * wolf->screen.width) - 1)
 		wolf->screen.img[pixel] = color;
