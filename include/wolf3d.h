@@ -17,9 +17,6 @@
 # include <mlx.h>
 # include <math.h>
 # include <fcntl.h>
-# include <stdio.h>
-# include <stdbool.h>
-# include <limits.h>
 # define ESC 53
 # define LEFT 123
 # define RIGHT 124
@@ -51,7 +48,7 @@
 # define SPEED_ROT 10
 # define SPEED_MOOVE 0.5
 # define BLOCKS_PERCENT 95
-# define SIZE_INFINY_MAP 1000
+# define SIZE_INFINY_MAP 100
 # define DISCOVER 1
 
 typedef struct		s_line

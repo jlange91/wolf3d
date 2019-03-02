@@ -20,13 +20,13 @@ static inline void	ceil_casting(t_wolf *wolf, t_fc c, int x)
 	color = 0;
 	if (wolf->text[5].mlx_img != NULL)
 	{
-		c.floor_tex_x = (int)(c.current_floor_x * wolf->text[5].width) %
-			wolf->text[5].width;
-		c.floor_tex_y = (int)(c.current_floor_y * wolf->text[5].height) %
-			wolf->text[5].height;
+		c.floor_tex_x = (int)(c.current_floor_x * wolf->text[5].width)
+			% wolf->text[5].width;
+		c.floor_tex_y = (int)(c.current_floor_y * wolf->text[5].height)
+			% wolf->text[5].height;
 		pixel = (c.floor_tex_y * wolf->text[5].width) + c.floor_tex_x;
-		if (pixel >= 0 && pixel < (wolf->text[5].height *
-					wolf->text[5].width) - 1)
+		if (pixel >= 0 && pixel < (wolf->text[5].height
+					* wolf->text[5].width) - 1)
 			color = wolf->text[5].img[pixel];
 	}
 	else
@@ -45,13 +45,13 @@ static inline void	floor_casting(t_wolf *wolf, t_fc c, int x)
 	color = 0;
 	if (wolf->text[4].mlx_img != NULL)
 	{
-		c.floor_tex_x = (int)(c.current_floor_x * wolf->text[4].width) %
-			wolf->text[4].width;
-		c.floor_tex_y = (int)(c.current_floor_y * wolf->text[4].height) %
-			wolf->text[4].height;
+		c.floor_tex_x = (int)(c.current_floor_x * wolf->text[4].width)
+			% wolf->text[4].width;
+		c.floor_tex_y = (int)(c.current_floor_y * wolf->text[4].height)
+			% wolf->text[4].height;
 		pixel = (c.floor_tex_y * wolf->text[4].width) + c.floor_tex_x;
-		if (pixel >= 0 && pixel < (wolf->text[4].height *
-					wolf->text[4].width) - 1)
+		if (pixel >= 0 && pixel < (wolf->text[4].height
+					* wolf->text[4].width) - 1)
 			color = wolf->text[4].img[pixel];
 	}
 	else
@@ -78,10 +78,10 @@ void				floor_ceil_casting(t_wolf *wolf, t_intersection *inter,
 	{
 		c.current_dist = WIN_Y / (2.0 * c.y - WIN_Y);
 		c.weight = c.current_dist / c.dist_wall;
-		c.current_floor_x = resize_double(c.weight * c.floor_x_wall +
-				(1.0 - c.weight) * wolf->posx);
-		c.current_floor_y = resize_double(c.weight * c.floor_y_wall +
-				(1.0 - c.weight) * wolf->posy);
+		c.current_floor_x = resize_double(c.weight * c.floor_x_wall
+				+ (1.0 - c.weight) * wolf->posx);
+		c.current_floor_y = resize_double(c.weight * c.floor_y_wall
+				+ (1.0 - c.weight) * wolf->posy);
 		floor_casting(wolf, c, x);
 		ceil_casting(wolf, c, x);
 		c.y++;

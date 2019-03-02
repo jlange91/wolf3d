@@ -33,10 +33,10 @@ t_dpoint	find_first_dist(double pos_x, double pos_y, double angle)
 	double		y_a;
 	t_dpoint	dist;
 
-	x = (angle > 90 && angle < 270) ? fabs(fmod(pos_x, 1)) :
-		fabs(fmod(pos_x, 1) - 1);
-	y = (angle > 180) ? fabs(fmod(pos_y, 1)) :
-		fabs(fmod(pos_y, 1) - 1);
+	x = (angle > 90 && angle < 270) ? fabs(fmod(pos_x, 1))
+		: fabs(fmod(pos_x, 1) - 1);
+	y = (angle > 180) ? fabs(fmod(pos_y, 1))
+		: fabs(fmod(pos_y, 1) - 1);
 	x_a = fabs(y / d_tan(angle));
 	y_a = fabs(x * d_tan(angle));
 	dist.x = sqrt(x_a * x_a + y * y);

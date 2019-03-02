@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 16:32:37 by jlange            #+#    #+#             */
-/*   Updated: 2019/01/28 17:03:47 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/02 17:06:58 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,20 @@ int				ft_alloc_map(t_wolf *wolf, char **av, int x, int y)
 	while (get_next_line(fd, &line) > 0)
 	{
 		if ((wolf->error = check_size_x(line, &x, y)))
+		{
+			free(line);
 			return (wolf->error);
+		}
 		free(line);
 		++y;
 	}
 	close(fd);
-	fd = 0;
+	fd = -1;
 	if (!(wolf->map = (t_map**)malloc(sizeof(t_map*) * (y))))
 		return (2);
-	while (fd < y)
-	{
+	while (++fd < y)
 		if (!(wolf->map[fd] = (t_map*)malloc(sizeof(t_map) * (x))))
 			return (2);
-		++fd;
-	}
 	wolf->map_width = x;
 	wolf->map_height = y;
 	return (0);
@@ -94,7 +94,7 @@ int				ft_fill_tab(t_wolf *wolf, char **av)
 	int		fd;
 	int		y;
 
-	if ((fd = open(av[1], O_RDONLY)) <= 2)
+	if ((fd = open(av[1], O_RDONLY)) < 2)
 	{
 		ft_putstr_fd("Error: can't open ", 2);
 		ft_putendl_fd(av[1], 2);

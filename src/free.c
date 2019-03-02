@@ -17,14 +17,16 @@ void	ft_free(t_wolf *wolf)
 	int y;
 
 	y = 0;
-	while (y < wolf->map_height)
+	while (wolf->map && y < wolf->map_height)
 	{
-		free(wolf->map[y]);
+		if (wolf->map[y])
+			free(wolf->map[y]);
 		++y;
 	}
-	free(wolf->map);
+	if (wolf->map)
+		free(wolf->map);
 	y = 0;
-	while (y < 4)
+	while (wolf->error == 0 && y < 6)
 	{
 		if (wolf->text[y].mlx_img)
 			mlx_destroy_image(wolf->mlx, wolf->text[y].mlx_img);

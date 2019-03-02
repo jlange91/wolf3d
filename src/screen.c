@@ -15,8 +15,8 @@
 void					init_display_column(t_wolf *wolf, int x, t_dc *c)
 {
 	c->text = wolf->inter[x].hit - 1;
-	c->x1 = (wolf->inter[x].hit == 1 || wolf->inter[x].hit == 2) ?
-		wolf->inter[x].point.x : wolf->inter[x].point.y;
+	c->x1 = (wolf->inter[x].hit == 1 || wolf->inter[x].hit == 2)
+		? wolf->inter[x].point.x : wolf->inter[x].point.y;
 	c->dist = wolf->inter[x].dist_wfe;
 	c->i = 1;
 	c->color = 0;
@@ -34,10 +34,10 @@ void					display_column(t_wolf *wolf, int x, int y1, int y2)
 	}
 	while (y2 - y1 > 0 && y1 < WIN_Y)
 	{
-		c.pixel = (round(c.i / wolf->hpp) * wolf->text[c.text].width) +
-			(fmod(c.x1, 1) * wolf->text[c.text].width);
-		if (c.pixel >= 0 && c.pixel <
-				(wolf->text[c.text].height * wolf->text[c.text].width) - 1)
+		c.pixel = (round(c.i / wolf->hpp) * wolf->text[c.text].width)
+			+ (fmod(c.x1, 1) * wolf->text[c.text].width);
+		if (c.pixel >= 0 && c.pixel
+				< (wolf->text[c.text].height * wolf->text[c.text].width) - 1)
 			c.color = wolf->text[c.text].img[c.pixel];
 		c.color = set_color(c.dist, c.color, wolf->length_view);
 		c.pixel = (y1 * WIN_X) + x;
@@ -61,15 +61,15 @@ static inline void		display_screen_loop(t_wolf *wolf)
 		point2.x = x;
 		point1.y = (WIN_Y / 2) - (wolf->inter[x].wall / 2);
 		point2.y = (WIN_Y / 2) + (wolf->inter[x].wall / 2);
-		if (wolf->inter[x].hit <= 0 || wolf->inter[x].hit > 4 ||
-				wolf->text[wolf->inter[x].hit - 1].mlx_img == NULL)
+		if (wolf->inter[x].hit <= 0 || wolf->inter[x].hit > 4
+				|| wolf->text[wolf->inter[x].hit - 1].mlx_img == NULL)
 			ft_line_wall(point1, point2, &wolf->screen,
 					set_color(wolf->inter[x].dist_wfe, wolf->inter[x].color,
 						wolf->length_view));
 		else
 		{
-			wolf->hpp = (double)wolf->inter[x].wall /
-						(double)wolf->text[wolf->inter[x].hit - 1].height;
+			wolf->hpp = (double)wolf->inter[x].wall
+						/ (double)wolf->text[wolf->inter[x].hit - 1].height;
 			display_column(wolf, x, point1.y, point2.y);
 		}
 		floor_ceil_casting(wolf, &wolf->inter[x], x);

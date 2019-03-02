@@ -25,7 +25,7 @@ HEADER = include/wolf3d.h
 
 CFLAGS = -Wall -Wextra -Werror
 
-CPPFLAGS = -Iinclude -ImlxSierra
+CPPFLAGS = -Iinclude -Imlx_sierra
 
 SRC_NAME =  main.c							\
 						display_hook.c			\
@@ -52,11 +52,11 @@ OBJS = $(addprefix obj/, $(OBJ))
 all: $(NAME)
 
 $(NAME): obj/ $(OBJS)
-	@$(CC) $(OBJS) libft/libft.a mlxSierra/libmlx.a -framework OpenGl -framework AppKit -o $(NAME)
+	@$(CC) $(OBJS) libft/libft.a mlx_sierra/libmlx.a -framework OpenGl -framework AppKit -o $(NAME)
 
 obj/:
 	@make -C libft
-	@make -C mlxSierra
+	@make -C mlx_sierra
 	@mkdir $(OBJ_PATH) 2> /dev/null
 
 obj/%.o: src/%.c $(HEADER)
@@ -64,12 +64,12 @@ obj/%.o: src/%.c $(HEADER)
 
 clean:
 	@make clean -C libft
-	@make clean -C mlxSierra
+	@make clean -C mlx_sierra
 	@rm -rf $(OBJ_PATH)
 
 fclean:
 	@make fclean -C libft
-	@make clean -C mlxSierra
+	@make clean -C mlx_sierra
 	@rm -rf $(NAME) $(OBJ_PATH) $(NAME)
 
 re: fclean all

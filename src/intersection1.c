@@ -14,9 +14,9 @@
 
 static inline void	check_map(t_wolf *wolf, t_si *i)
 {
-	if ((i->mapx >= 0 && i->mapx < wolf->map_width) &&
-			(i->mapy >= 0 && i->mapy < wolf->map_height) &&
-			wolf->map[i->mapy][i->mapx].type > 0)
+	if ((i->mapx >= 0 && i->mapx < wolf->map_width)
+			&& (i->mapy >= 0 && i->mapy < wolf->map_height)
+			&& wolf->map[i->mapy][i->mapx].type > 0)
 	{
 		i->hit = 1;
 		wolf->map[i->mapy][i->mapx].discover = 1;
@@ -58,8 +58,8 @@ static inline void	remove_fisheyes(t_wolf *wolf, t_intersection *inter)
 	if (!wolf->fisheyes)
 	{
 		middle = wolf->radius + (wolf->fov / 2);
-		angle = (inter->angle < wolf->radius) ?
-			inter->angle + 360 : inter->angle;
+		angle = (inter->angle < wolf->radius)
+			? inter->angle + 360 : inter->angle;
 		diff = (middle > angle) ? angle - middle : middle - angle;
 		inter->dist_wfe = inter->dist * d_cos(diff);
 	}

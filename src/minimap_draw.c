@@ -6,7 +6,7 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 17:09:00 by jlange            #+#    #+#             */
-/*   Updated: 2019/03/02 01:41:10 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/02 17:06:02 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,15 @@ static inline void		draw_map_loop(t_wolf *wolf, t_m *m)
 {
 	m->x = 0;
 	m->rx = resize_double(wolf->posx - (m->max_x / 2));
-	m->dx = fmod((wolf->minimap.width / 2) - (wolf->posx *
-				wolf->mm_info.square), wolf->mm_info.square);
+	m->dx = fmod((wolf->minimap.width / 2) - (wolf->posx
+				* wolf->mm_info.square), wolf->mm_info.square);
 	m->dx = (m->dx > 0) ? m->dx - wolf->mm_info.square : m->dx;
 	while (m->x < m->max_x + 1)
 	{
-		if (m->ry < wolf->map_height && m->ry >= 0 &&
-			m->rx < wolf->map_width && m->rx >= 0 &&
-			wolf->map[(unsigned int)m->ry][(unsigned int)m->rx].type &&
-			wolf->map[(unsigned int)m->ry][(unsigned int)m->rx].discover == 1)
+		if (m->ry < wolf->map_height && m->ry >= 0
+		&& m->rx < wolf->map_width && m->rx >= 0
+		&& wolf->map[(unsigned int)m->ry][(unsigned int)m->rx].type
+		&& wolf->map[(unsigned int)m->ry][(unsigned int)m->rx].discover == 1)
 		{
 			m->point_a.x = (m->x * wolf->mm_info.square) + round(m->dx);
 			m->point_a.y = (m->y * wolf->mm_info.square) + round(m->dy);
@@ -92,8 +92,8 @@ void					minimap_draw_map(t_wolf *wolf)
 	m.max_y = wolf->minimap.height / wolf->mm_info.square;
 	m.y = 0;
 	m.ry = resize_double(wolf->posy - (m.max_y / 2));
-	m.dy = fmod((wolf->minimap.height / 2) -
-			(wolf->posy * wolf->mm_info.square), wolf->mm_info.square);
+	m.dy = fmod((wolf->minimap.height / 2)
+			- (wolf->posy * wolf->mm_info.square), wolf->mm_info.square);
 	m.dy = (m.dy > 0) ? m.dy - wolf->mm_info.square : m.dy;
 	while (m.y < m.max_y + 1)
 		draw_map_loop(wolf, &m);

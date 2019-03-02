@@ -37,8 +37,8 @@ void			ft_pixel_put(t_image *img, int x, int y, int color)
 	int pixel;
 
 	pixel = (y * img->width) + x;
-	if (x > 0 && x < img->width && y > 0 &&
-		y < img->height && pixel > img->width)
+	if (x > 0 && x < img->width && y > 0
+		&& y < img->height && pixel > img->width)
 		img->img[pixel] = color;
 }
 

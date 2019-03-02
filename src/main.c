@@ -23,9 +23,11 @@ int		main(int ac, char **av)
 {
 	t_wolf wolf;
 
+	wolf.map = NULL;
 	if (ft_init(&wolf, ac, av) > 0)
 	{
 		ft_error(wolf.error);
+		ft_free(&wolf);
 		return (1);
 	}
 	else
