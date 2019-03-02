@@ -43,6 +43,7 @@ SRC_NAME =  main.c							\
 						screen.c 						\
 						math.c 							\
 						floor_casting.c 		\
+						moove.c 						\
 
 OBJ = $(SRC_NAME:.c=.o)
 

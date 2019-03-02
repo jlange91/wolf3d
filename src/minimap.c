@@ -17,8 +17,8 @@ void					display_minimap(t_wolf *wolf)
 	t_point point_a;
 	t_point point_b;
 
-	wolf->mm_info.px = wolf->posX * MINIMAP_ZOOM;
-	wolf->mm_info.py = wolf->posY * MINIMAP_ZOOM;
+	wolf->mm_info.px = wolf->posx * MINIMAP_ZOOM;
+	wolf->mm_info.py = wolf->posy * MINIMAP_ZOOM;
 	wolf->minimap.mlx_img = mlx_new_image(wolf->mlx, wolf->minimap.width,
 		wolf->minimap.height);
 	wolf->minimap.img = (unsigned int *)mlx_get_data_addr(wolf->minimap.mlx_img,

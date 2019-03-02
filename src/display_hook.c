@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 22:32:51 by jlange            #+#    #+#             */
-/*   Updated: 2019/01/28 17:54:42 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/02 03:44:09 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,20 @@ static inline void		ft_display_hook1(int keycode, t_wolf *wolf)
 		if (keycode == PLUS)
 			wolf->mm_info.square += 1;
 		else
-			wolf->mm_info.square -= (wolf->mm_info.square > 1 ) ? 1 : 0;
+			wolf->mm_info.square -= (wolf->mm_info.square > 1) ? 1 : 0;
+		ft_wolf(wolf);
+	}
+	else if (keycode == DOWN || keycode == UP)
+	{
+		if (keycode == UP)
+			forward(wolf);
+		else
+			backward(wolf);
+		ft_wolf(wolf);
+	}
+	else if (keycode == FISHEYES)
+	{
+		wolf->fisheyes = (wolf->fisheyes == 0) ? 1 : 0;
 		ft_wolf(wolf);
 	}
 }
@@ -27,7 +40,6 @@ static inline void		ft_display_hook1(int keycode, t_wolf *wolf)
 int						ft_display_hook(int keycode, void *test)
 {
 	t_wolf *wolf;
-
 
 	wolf = (t_wolf*)test;
 	if (keycode == ESC)
@@ -47,46 +59,6 @@ int						ft_display_hook(int keycode, void *test)
 			wolf->radius = wolf->radius - SPEED_ROT;
 			wolf->radius += (wolf->radius < 0.) ? 360 : 0;
 		}
-		ft_wolf(wolf);
-	}
-	else if (keycode == DOWN || keycode == UP)
-	{
-		if (keycode == UP)
-		{
-			double posX;
-			double posY;
-
-			posX = resize_double(wolf->posX + d_cos(wolf->radius + (FOV / 2)) * SPEED_MOOVE);
-			posY = resize_double(wolf->posY + d_sin(wolf->radius + (FOV / 2)) * SPEED_MOOVE);
-			if (posX >= wolf->mapWidth || posX < 0 ||
-				 posY >= wolf->mapHeigth || posY < 0)
-				return (0);
-			if (!wolf->map[(unsigned int)(wolf->posY)][(unsigned int)(posX)].type)
-				wolf->posX = posX;
-			if (!wolf->map[(unsigned int)(posY)][(unsigned int)(wolf->posX)].type)
-				wolf->posY = posY;
-
-		}
-		else
-		{
-			double posX;
-			double posY;
-
-			posX = resize_double(wolf->posX - d_cos(wolf->radius + (FOV / 2)) * SPEED_MOOVE);
-			posY = resize_double(wolf->posY - d_sin(wolf->radius + (FOV / 2)) * SPEED_MOOVE);
-			if (posX >= wolf->mapWidth || posX < 0 ||
-				 posY >= wolf->mapHeigth || posY < 0)
-				return (0);
-			if (!wolf->map[(unsigned int)(wolf->posY)][(unsigned int)(posX)].type)
-				wolf->posX = posX;
-			if (!wolf->map[(unsigned int)(posY)][(unsigned int)(wolf->posX)].type)
-				wolf->posY = posY;
-		}
-		ft_wolf(wolf);
-	}
-	else if (keycode == FISHEYES)
-	{
-		wolf->fisheyes = (wolf->fisheyes == 0) ? 1 : 0;
 		ft_wolf(wolf);
 	}
 	else

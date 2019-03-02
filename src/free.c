@@ -17,7 +17,7 @@ void	ft_free(t_wolf *wolf)
 	int y;
 
 	y = 0;
-	while (y < wolf->mapHeigth)
+	while (y < wolf->map_height)
 	{
 		free(wolf->map[y]);
 		++y;

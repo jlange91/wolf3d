@@ -61,8 +61,8 @@ int				ft_alloc_map(t_wolf *wolf, char **av, int x, int y)
 			return (2);
 		++fd;
 	}
-	wolf->mapWidth = x;
-	wolf->mapHeigth = y;
+	wolf->map_width = x;
+	wolf->map_height = y;
 	return (0);
 }
 

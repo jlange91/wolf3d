@@ -19,15 +19,15 @@ static int		place_player(t_wolf *wolf)
 	int		x;
 
 	y = 0;
-	while (y < wolf->mapHeigth)
+	while (y < wolf->map_height)
 	{
 		x = 0;
-		while (x < wolf->mapWidth)
+		while (x < wolf->map_width)
 		{
 			if (wolf->map[y][x].type == 0)
 			{
-				wolf->posX = x + 0.5;
-				wolf->posY = y + 0.5;
+				wolf->posx = x + 0.5;
+				wolf->posy = y + 0.5;
 				return (0);
 			}
 			++x;
@@ -57,8 +57,8 @@ t_map			**create_map(t_wolf *wolf)
 		}
 		++i;
 	}
-	wolf->mapWidth = SIZE_INFINY_MAP;
-	wolf->mapHeigth = SIZE_INFINY_MAP;
+	wolf->map_width = SIZE_INFINY_MAP;
+	wolf->map_height = SIZE_INFINY_MAP;
 	return (ret);
 }
 
@@ -77,13 +77,13 @@ int				ft_init(t_wolf *wolf, int ac, char **av)
 	wolf->minimap.width = WIN_X_MINIMAP;
 	wolf->minimap.height = WIN_Y_MINIMAP;
 	wolf->radius = START_ANGLE;
-	wolf->spaceInterRadius = (double)FOV / (double)WIN_X;
+	wolf->space_inter_radius = (double)FOV / (double)WIN_X;
 	wolf->fisheyes = 0;
 	wolf->mm_info.square = MINIMAP_ZOOM;
 	wolf->mm_info.restx = fmod(wolf->minimap.width, wolf->mm_info.square);
 	wolf->mm_info.resty = fmod(wolf->minimap.height, wolf->mm_info.square);
-	wolf->mm_info.px = wolf->posX / MINIMAP_ZOOM;
-	wolf->mm_info.py = wolf->posY / MINIMAP_ZOOM;
+	wolf->mm_info.px = wolf->posx / MINIMAP_ZOOM;
+	wolf->mm_info.py = wolf->posy / MINIMAP_ZOOM;
 	wolf->mlx = mlx_init();
 	init_textures(wolf);
 	init_screen(wolf);
