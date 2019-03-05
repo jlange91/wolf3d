@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moove.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 03:44:28 by jlange            #+#    #+#             */
-/*   Updated: 2019/03/02 03:47:33 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/05 02:52:49 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	forward(t_wolf *wolf)
 	double pos_y;
 
 	pos_x = resize_double(wolf->posx + d_cos(wolf->radius
-				+ (wolf->fov / 2)) * SPEED_MOOVE);
+				+ (wolf->fov / 2)) * (SPEED_MOOVE + (wolf->key[SHIFT] * 0.3)));
 	pos_y = resize_double(wolf->posy + d_sin(wolf->radius
-				+ (wolf->fov / 2)) * SPEED_MOOVE);
+				+ (wolf->fov / 2)) * (SPEED_MOOVE + (wolf->key[SHIFT] * 0.3)));
 	if (pos_x >= wolf->map_width || pos_x < 0
 			|| pos_y >= wolf->map_height || pos_y < 0)
 		return ;
@@ -36,9 +36,9 @@ void	backward(t_wolf *wolf)
 	double pos_y;
 
 	pos_x = resize_double(wolf->posx - d_cos(wolf->radius
-				+ (wolf->fov / 2)) * SPEED_MOOVE);
+				+ (wolf->fov / 2)) * (SPEED_MOOVE + (wolf->key[SHIFT] * 0.3)));
 	pos_y = resize_double(wolf->posy - d_sin(wolf->radius
-				+ (wolf->fov / 2)) * SPEED_MOOVE);
+				+ (wolf->fov / 2)) * (SPEED_MOOVE + (wolf->key[SHIFT] * 0.3)));
 	if (pos_x >= wolf->map_width || pos_x < 0
 			|| pos_y >= wolf->map_height || pos_y < 0)
 		return ;

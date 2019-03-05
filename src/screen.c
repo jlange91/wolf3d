@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 01:43:42 by jlange            #+#    #+#             */
-/*   Updated: 2019/03/02 02:58:37 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/03 01:44:24 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,4 @@ void					display_screen(t_wolf *wolf)
 	mlx_put_image_to_window(wolf->mlx, wolf->screen.win,
 			wolf->screen.mlx_img, 0, 0);
 	mlx_destroy_image(wolf->mlx, wolf->screen.mlx_img);
-}
-
-void					init_screen(t_wolf *wolf)
-{
-	wolf->screen.win = mlx_new_window(wolf->mlx, WIN_X, WIN_Y, "Wolf3D");
-	mlx_hook(wolf->screen.win, 2, (1L << 0), ft_display_hook, wolf);
-	mlx_hook(wolf->screen.win, 17, (1L << 17), ft_redcross, wolf);
 }

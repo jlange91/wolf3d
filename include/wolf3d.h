@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 17:56:39 by jlange            #+#    #+#             */
-/*   Updated: 2019/03/02 07:00:53 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/05 03:02:21 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <math.h>
 # include <fcntl.h>
 # define ESC 53
+# define SHIFT 257
 # define LEFT 123
 # define RIGHT 124
 # define UP 126
@@ -45,10 +46,10 @@
 # define LENGTH_VIEW 20
 # define FOV 60
 # define MINIMAP_ZOOM 4
-# define SPEED_ROT 10
-# define SPEED_MOOVE 0.5
+# define SPEED_ROT 5
+# define SPEED_MOOVE 0.3
 # define BLOCKS_PERCENT 95
-# define SIZE_INFINY_MAP 100
+# define SIZE_INFINY_MAP 1000
 # define DISCOVER 1
 
 typedef struct		s_line
@@ -134,6 +135,8 @@ typedef struct		s_wolf
 	int				error;
 	int				length_view;
 	int				fov;
+	double		sec;
+	char			key[280];
 }					t_wolf;
 
 typedef struct		s_fc
@@ -189,10 +192,10 @@ typedef struct		s_si
 int					ft_init(t_wolf *wolf, int ac, char **av);
 void				ft_free(t_wolf *wolf);
 void				ft_error(int error);
-void				ft_wolf(t_wolf *wolf);
+int					ft_wolf(t_wolf *wolf);
 void				init_textures(t_wolf *wolf);
 int					ft_fill_tab(t_wolf *wolf, char **av);
-int					ft_display_hook(int keycode, void *mlx);
+int					ft_display_hook(t_wolf *wolf);
 int					ft_redcross(t_wolf *wolf);
 void				ft_pixel_put(t_image *img, int x, int y, int color);
 void				ft_draw_rectangle(t_point map0, t_point map1,
@@ -215,7 +218,6 @@ void				display_minimap(t_wolf *wolf);
 void				minimap_draw_angle(t_wolf *wolf);
 void				minimap_draw_map(t_wolf *wolf);
 void				minimap_draw_perso(t_wolf *wolf);
-void				init_screen(t_wolf *wolf);
 void				display_screen(t_wolf *wolf);
 void				ft_line_wall(t_point map0, t_point map1, t_image *img,
 		int color);
@@ -226,5 +228,8 @@ t_si				init_search_intersection(t_wolf *wolf,
 		t_intersection inter);
 void				forward(t_wolf *wolf);
 void				backward(t_wolf *wolf);
+
+int						key_press_hook(int keycode, t_wolf *wolf);
+int						key_release_hook(int keycode, t_wolf *wolf);
 
 #endif

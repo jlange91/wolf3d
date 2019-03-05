@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_casting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 00:25:45 by jlange            #+#    #+#             */
-/*   Updated: 2019/03/02 00:27:44 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/03 02:03:11 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void				floor_ceil_casting(t_wolf *wolf, t_intersection *inter,
 	c.floor_x_wall = inter->point.x;
 	c.floor_y_wall = inter->point.y;
 	c.dist_wall = inter->dist_wfe;
-	c.y = c.drawend + 1;
+	c.y = c.drawend;
 	while (c.y < WIN_Y)
 	{
 		c.current_dist = WIN_Y / (2.0 * c.y - WIN_Y);

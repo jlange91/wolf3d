@@ -6,7 +6,7 @@
 #    By: jlange <jlange@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/28 12:33:38 by jlange            #+#    #+#              #
-#    Updated: 2018/04/10 19:01:40 by jlange           ###   ########.fr        #
+#    Updated: 2019/03/05 02:09:50 by jlange           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,8 @@ SRC_NAME =  main.c							\
 						math.c 							\
 						floor_casting.c 		\
 						moove.c 						\
+						key_press_hook.c		\
+						key_release_hook.c	\
 
 OBJ = $(SRC_NAME:.c=.o)
 
