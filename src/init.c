@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 17:04:57 by jlange            #+#    #+#             */
-/*   Updated: 2019/03/05 02:43:45 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/05 14:42:57 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int				create_map(t_wolf *wolf)
 	return (0);
 }
 
-void 			init_key(t_wolf *wolf)
+void			init_key(t_wolf *wolf)
 {
 	int i;
 

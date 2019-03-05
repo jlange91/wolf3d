@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 17:56:39 by jlange            #+#    #+#             */
-/*   Updated: 2019/03/05 03:02:21 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/05 14:48:26 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ typedef struct		s_wolf
 	int				error;
 	int				length_view;
 	int				fov;
-	double		sec;
 	char			key[280];
 }					t_wolf;
 
@@ -228,8 +227,7 @@ t_si				init_search_intersection(t_wolf *wolf,
 		t_intersection inter);
 void				forward(t_wolf *wolf);
 void				backward(t_wolf *wolf);
-
-int						key_press_hook(int keycode, t_wolf *wolf);
-int						key_release_hook(int keycode, t_wolf *wolf);
+int					key_press_hook(int keycode, t_wolf *wolf);
+int					key_release_hook(int keycode, t_wolf *wolf);
 
 #endif
