@@ -11,9 +11,16 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include <stdio.h>
 
 int		ft_wolf(t_wolf *wolf)
 {
+	if (wolf->map[(int)wolf->posy][(int)wolf->posx].win == 1)
+	{
+		ft_putendl("Bravo l'artiste.");
+		ft_free(wolf);
+		exit(0);
+	}
 	ft_display_hook(wolf);
 	search_intersections(wolf);
 	display_screen(wolf);
@@ -34,7 +41,6 @@ int		main(int ac, char **av)
 {
 	t_wolf wolf;
 
-	wolf.map = NULL;
 	if (ft_init(&wolf, ac, av) > 0)
 	{
 		ft_error(wolf.error);

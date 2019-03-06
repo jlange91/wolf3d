@@ -14,11 +14,13 @@
 
 void					init_display_column(t_wolf *wolf, int x, t_dc *c)
 {
-	c->text = wolf->inter[x].hit - 1;
+	c->text = (wolf->inter[x].win == 1) ? 6 : wolf->inter[x].hit - 1;
+	wolf->hpp = (double)wolf->inter[x].wall
+				/ (double)wolf->text[c->text].height;
 	c->x1 = (wolf->inter[x].hit == 1 || wolf->inter[x].hit == 2)
 		? wolf->inter[x].point.x : wolf->inter[x].point.y;
 	c->dist = wolf->inter[x].dist_wfe;
-	c->i = 1;
+	c->i = 0;
 	c->color = 0;
 }
 
@@ -67,11 +69,7 @@ static inline void		display_screen_loop(t_wolf *wolf)
 					set_color(wolf->inter[x].dist_wfe, wolf->inter[x].color,
 						wolf->length_view));
 		else
-		{
-			wolf->hpp = (double)wolf->inter[x].wall
-						/ (double)wolf->text[wolf->inter[x].hit - 1].height;
 			display_column(wolf, x, point1.y, point2.y);
-		}
 		floor_ceil_casting(wolf, &wolf->inter[x], x);
 	}
 }

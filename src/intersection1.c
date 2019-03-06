@@ -16,7 +16,8 @@ static inline void	check_map(t_wolf *wolf, t_si *i)
 {
 	if ((i->mapx >= 0 && i->mapx < wolf->map_width)
 			&& (i->mapy >= 0 && i->mapy < wolf->map_height)
-			&& wolf->map[i->mapy][i->mapx].type > 0)
+			&& (wolf->map[i->mapy][i->mapx].type > 0
+			|| wolf->map[i->mapy][i->mapx].win == 1))
 	{
 		i->hit = 1;
 		wolf->map[i->mapy][i->mapx].discover = 1;
@@ -34,7 +35,7 @@ static inline void	raycasting(t_wolf *wolf, t_intersection *inter, t_si *i)
 			inter->dist = i->first_dist.x;
 			inter->hit = (inter->angle > 180) ? 1 : 2;
 			i->first_dist.x += i->dist.x;
-			i->mapy = resize_double(i->mapy + i->stepy);
+			i->mapy = i->mapy + i->stepy;
 		}
 		else
 		{
@@ -43,7 +44,7 @@ static inline void	raycasting(t_wolf *wolf, t_intersection *inter, t_si *i)
 			inter->dist = i->first_dist.y;
 			inter->hit = (inter->angle > 90 && inter->angle < 270) ? 3 : 4;
 			i->first_dist.y += i->dist.y;
-			i->mapx = resize_double(i->mapx + i->stepx);
+			i->mapx = i->mapx + i->stepx;
 		}
 		check_map(wolf, i);
 	}
@@ -73,6 +74,7 @@ t_intersection		search_intersection(t_wolf *wolf, t_intersection inter)
 
 	i = init_search_intersection(wolf, inter);
 	raycasting(wolf, &inter, &i);
+	inter.win = (wolf->map[i.mapy][i.mapx].win == 1) ? 1 : 0;
 	if (i.hit == 0)
 	{
 		inter.dist = wolf->length_view;

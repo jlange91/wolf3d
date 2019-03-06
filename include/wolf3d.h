@@ -46,10 +46,10 @@
 # define LENGTH_VIEW 20
 # define FOV 60
 # define MINIMAP_ZOOM 4
-# define SPEED_ROT 5
-# define SPEED_MOOVE 0.3
-# define BLOCKS_PERCENT 95
-# define SIZE_INFINY_MAP 1000
+# define SPEED_ROT 6
+# define SPEED_MOOVE 0.15
+# define BLOCKS_PERCENT 75
+# define SIZE_MAP 15
 # define DISCOVER 1
 
 typedef struct		s_line
@@ -74,6 +74,15 @@ typedef struct		s_dpoint
 	double y;
 }					t_dpoint;
 
+typedef struct s_node
+{
+	int 	x;
+	int		y;
+	void 	*parent;
+	char 	c;
+	char 	dirs;
+}               t_node;
+
 typedef struct		s_intersection
 {
 	t_dpoint		point;
@@ -83,6 +92,7 @@ typedef struct		s_intersection
 	double			angle;
 	unsigned int	color;
 	int				hit;
+	int				win;
 }					t_intersection;
 
 typedef struct		s_image
@@ -108,8 +118,9 @@ typedef struct		s_minimap
 
 typedef struct		s_map
 {
-	int		discover;
-	int		type;
+	int			discover;
+	int			type;
+	short		win;
 }					t_map;
 
 typedef struct		s_wolf
@@ -117,6 +128,7 @@ typedef struct		s_wolf
 	void			*mlx;
 	char			*file;
 	t_map			**map;
+	t_node		*nodes;
 	int				map_width;
 	int				map_height;
 	double			radius;
@@ -127,7 +139,7 @@ typedef struct		s_wolf
 	t_image			minimap;
 	t_image			screen;
 	t_intersection	inter[WIN_X];
-	t_image			text[6];
+	t_image			text[7];
 	long double		hpp;
 	int				minimapx;
 	int				minimapy;
@@ -212,7 +224,6 @@ t_dpoint			find_first_dist(double posx, double posy, double angle);
 t_intersection		search_intersection(t_wolf *wolf, t_intersection inter);
 void				search_intersections(t_wolf *wolf);
 void				ft_search_intersections(t_wolf *wolf);
-double				resize_double(double nb);
 void				display_minimap(t_wolf *wolf);
 void				minimap_draw_angle(t_wolf *wolf);
 void				minimap_draw_map(t_wolf *wolf);
@@ -229,5 +240,7 @@ void				forward(t_wolf *wolf);
 void				backward(t_wolf *wolf);
 int					key_press_hook(int keycode, t_wolf *wolf);
 int					key_release_hook(int keycode, t_wolf *wolf);
+int maze_generator(t_wolf *wolf);
+int			init_maze(t_wolf *wolf, int i, int j);
 
 #endif

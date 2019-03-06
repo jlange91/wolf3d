@@ -12,20 +12,6 @@
 
 #include "wolf3d.h"
 
-double		resize_double(double nb)
-{
-	double ret;
-
-	ret = 0;
-	if (nb < 0)
-		ret = fmod(nb, SIZE_INFINY_MAP) + SIZE_INFINY_MAP;
-	else if (nb >= SIZE_INFINY_MAP)
-		ret = nb - SIZE_INFINY_MAP;
-	else
-		ret = nb;
-	return (ret);
-}
-
 t_dpoint	endpoint2(double angle, double x1, double y1, double lenght)
 {
 	t_dpoint	ret;

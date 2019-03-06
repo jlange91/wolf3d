@@ -23,7 +23,7 @@ CC = cc
 
 HEADER = include/wolf3d.h
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 CPPFLAGS = -Iinclude -Imlx_sierra
 
@@ -46,6 +46,8 @@ SRC_NAME =  main.c							\
 						moove.c 						\
 						key_press_hook.c		\
 						key_release_hook.c	\
+						maze_generator.c		\
+						init_maze.c					\
 
 OBJ = $(SRC_NAME:.c=.o)
 
@@ -54,7 +56,7 @@ OBJS = $(addprefix obj/, $(OBJ))
 all: $(NAME)
 
 $(NAME): obj/ $(OBJS)
-	@$(CC) $(OBJS) libft/libft.a mlx_sierra/libmlx.a -framework OpenGl -framework AppKit -o $(NAME)
+	@$(CC) $(OBJS) -g libft/libft.a mlx_sierra/libmlx.a -framework OpenGl -framework AppKit -o $(NAME) -fsanitize=address
 
 obj/:
 	@make -C libft

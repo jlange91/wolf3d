@@ -81,6 +81,7 @@ void			ft_fill_map(char *str, t_map *map, int discover)
 		{
 			map[x].type = (unsigned int)ft_atoi(&str[i]);
 			map[x].discover = discover;
+			map[x].win = 0;
 			i += ft_intlen(ft_atoi(&str[i]));
 			++x;
 		}

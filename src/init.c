@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-#include <time.h>
 
 static int		place_player(t_wolf *wolf)
 {
@@ -42,25 +41,24 @@ int				create_map(t_wolf *wolf)
 	int		i;
 	int		j;
 
-	i = 0;
-	srand(time(NULL));
-	if (!(wolf->map = (t_map**)malloc(sizeof(t_map*) * SIZE_INFINY_MAP)))
+	i = -1;
+	if (!(wolf->map = (t_map**)malloc(sizeof(t_map*) * SIZE_MAP)))
 		return (2);
-	while (i < SIZE_INFINY_MAP)
+	while (++i < SIZE_MAP)
 	{
 		j = -1;
-		if (!(wolf->map[i] = (t_map*)malloc(sizeof(t_map) * SIZE_INFINY_MAP)))
+		if (!(wolf->map[i] = (t_map*)malloc(sizeof(t_map) * SIZE_MAP)))
 			return (2);
-		while (++j < SIZE_INFINY_MAP)
+		while (++j < SIZE_MAP)
 		{
-			wolf->map[i][j].type = ((rand() % 100) > BLOCKS_PERCENT) ? 1 : 0;
+			wolf->map[i][j].type = 0;
 			wolf->map[i][j].discover = DISCOVER;
+			wolf->map[i][j].win = 0;
 		}
-		++i;
 	}
-	wolf->map_width = SIZE_INFINY_MAP;
-	wolf->map_height = SIZE_INFINY_MAP;
-	return (0);
+	wolf->map_width = SIZE_MAP;
+	wolf->map_height = SIZE_MAP;
+	return (maze_generator(wolf));
 }
 
 void			init_key(t_wolf *wolf)
@@ -74,6 +72,8 @@ void			init_key(t_wolf *wolf)
 
 int				ft_init(t_wolf *wolf, int ac, char **av)
 {
+	wolf->map = NULL;
+	wolf->nodes = NULL;
 	if ((wolf->error = (ac > 1) ? ft_fill_tab(wolf, av) : create_map(wolf)))
 		return (wolf->error);
 	if ((wolf->error = place_player(wolf)))
