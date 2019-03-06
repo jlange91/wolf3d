@@ -64,7 +64,8 @@ static inline void		display_screen_loop(t_wolf *wolf)
 		point1.y = (WIN_Y / 2) - (wolf->inter[x].wall / 2);
 		point2.y = (WIN_Y / 2) + (wolf->inter[x].wall / 2);
 		if (wolf->inter[x].hit <= 0 || wolf->inter[x].hit > 4
-				|| wolf->text[wolf->inter[x].hit - 1].mlx_img == NULL)
+				|| wolf->text[wolf->inter[x].hit - 1].mlx_img == NULL
+			|| (wolf->inter[x].win == 1 && wolf->text[6].mlx_img == NULL))
 			ft_line_wall(point1, point2, &wolf->screen,
 					set_color(wolf->inter[x].dist_wfe, wolf->inter[x].color,
 						wolf->length_view));
