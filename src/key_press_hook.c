@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-#include <stdio.h>
 
 int		key_press_hook(int keycode, t_wolf *wolf)
 {

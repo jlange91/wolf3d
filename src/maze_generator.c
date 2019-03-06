@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-#include <time.h>
 
 int			choice_direction2(t_node *n, char dir, int *x, int *y)
 {
@@ -78,22 +77,6 @@ t_node		*link_nodes(t_node *n, t_wolf *wolf, int x, int y)
 		}
 	}
 	return (n->parent);
-}
-
-void		fill_map(t_wolf *wolf)
-{
-	int i;
-	int j;
-
-	i = -1;
-	while (++i < SIZE_MAP)
-	{
-		j = -1;
-		while (++j < SIZE_MAP)
-			wolf->map[i][j].type = (wolf->nodes[j + i * SIZE_MAP].c == '#')
-				? 1 : 0;
-	}
-	wolf->map[SIZE_MAP - 2][SIZE_MAP - 2].win = 1;
 }
 
 int			maze_generator(t_wolf *wolf)

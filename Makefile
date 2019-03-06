@@ -48,6 +48,7 @@ SRC_NAME =  main.c							\
 						key_release_hook.c	\
 						maze_generator.c		\
 						init_maze.c					\
+						place_player.c			\
 
 OBJ = $(SRC_NAME:.c=.o)
 

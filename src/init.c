@@ -12,30 +12,6 @@
 
 #include "wolf3d.h"
 
-static int		place_player(t_wolf *wolf)
-{
-	int		y;
-	int		x;
-
-	y = 0;
-	while (y < wolf->map_height)
-	{
-		x = 0;
-		while (x < wolf->map_width)
-		{
-			if (wolf->map[y][x].type == 0)
-			{
-				wolf->posx = x + 0.5;
-				wolf->posy = y + 0.5;
-				return (0);
-			}
-			++x;
-		}
-		++y;
-	}
-	return (5);
-}
-
 int				create_map(t_wolf *wolf)
 {
 	int		i;

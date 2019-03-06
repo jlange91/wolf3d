@@ -17,6 +17,7 @@
 # include <mlx.h>
 # include <math.h>
 # include <fcntl.h>
+# include <time.h>
 # define ESC 53
 # define SHIFT 257
 # define LEFT 123
@@ -49,8 +50,8 @@
 # define SPEED_ROT 6
 # define SPEED_MOOVE 0.15
 # define BLOCKS_PERCENT 75
-# define SIZE_MAP 15
-# define DISCOVER 1
+# define SIZE_MAP 21
+# define DISCOVER 0
 
 typedef struct		s_line
 {
@@ -242,5 +243,7 @@ int					key_press_hook(int keycode, t_wolf *wolf);
 int					key_release_hook(int keycode, t_wolf *wolf);
 int					maze_generator(t_wolf *wolf);
 int					init_maze(t_wolf *wolf, int i, int j);
+void				fill_map(t_wolf *wolf);
+int					place_player(t_wolf *wolf);
 
 #endif
