@@ -6,7 +6,7 @@
 /*   By: jlange <jlange@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 17:56:39 by jlange            #+#    #+#             */
-/*   Updated: 2019/03/05 14:48:26 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/06 05:59:32 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ typedef struct		s_dpoint
 	double y;
 }					t_dpoint;
 
-typedef struct s_node
+typedef struct		s_node
 {
-	int 	x;
+	int		x;
 	int		y;
-	void 	*parent;
-	char 	c;
-	char 	dirs;
-}               t_node;
+	void	*parent;
+	char	c;
+	char	dirs;
+}					t_node;
 
 typedef struct		s_intersection
 {
@@ -128,7 +128,7 @@ typedef struct		s_wolf
 	void			*mlx;
 	char			*file;
 	t_map			**map;
-	t_node		*nodes;
+	t_node			*nodes;
 	int				map_width;
 	int				map_height;
 	double			radius;
@@ -240,7 +240,7 @@ void				forward(t_wolf *wolf);
 void				backward(t_wolf *wolf);
 int					key_press_hook(int keycode, t_wolf *wolf);
 int					key_release_hook(int keycode, t_wolf *wolf);
-int maze_generator(t_wolf *wolf);
-int			init_maze(t_wolf *wolf, int i, int j);
+int					maze_generator(t_wolf *wolf);
+int					init_maze(t_wolf *wolf, int i, int j);
 
 #endif
