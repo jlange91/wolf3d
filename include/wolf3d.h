@@ -32,12 +32,10 @@
 # define FOV_MINUS 20
 # define FOV_PLUS 21
 # define BLANC 0x00FFFFFF
-# define VERT_F 0x428C01
 # define VERT_C 0x25FA3A
 # define BLEU_F 0x013CFE
 # define BLEU_C 0x2BC7FF
 # define MARON_F 0x975600
-# define MARON_C 0xC37612
 # define JAUNE 0xF2F266
 # define WIN_X 900
 # define WIN_Y 740
@@ -49,9 +47,8 @@
 # define MINIMAP_ZOOM 4
 # define SPEED_ROT 6
 # define SPEED_MOOVE 0.15
-# define BLOCKS_PERCENT 75
 # define SIZE_MAP 21
-# define DISCOVER 0
+# define DISCOVER 1
 
 typedef struct		s_line
 {

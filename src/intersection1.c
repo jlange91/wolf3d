@@ -74,7 +74,9 @@ t_intersection		search_intersection(t_wolf *wolf, t_intersection inter)
 
 	i = init_search_intersection(wolf, inter);
 	raycasting(wolf, &inter, &i);
-	inter.win = (wolf->map[i.mapy][i.mapx].win == 1) ? 1 : 0;
+	inter.win = ((i.mapx >= 0 && i.mapx < wolf->map_width)
+			&& (i.mapy >= 0 && i.mapy < wolf->map_height)
+			&& wolf->map[i.mapy][i.mapx].win == 1) ? 1 : 0;
 	if (i.hit == 0)
 	{
 		inter.dist = wolf->length_view;

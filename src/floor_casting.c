@@ -78,10 +78,10 @@ void				floor_ceil_casting(t_wolf *wolf, t_intersection *inter,
 	{
 		c.current_dist = WIN_Y / (2.0 * c.y - WIN_Y);
 		c.weight = c.current_dist / c.dist_wall;
-		c.current_floor_x = c.weight * c.floor_x_wall
-				+ (1.0 - c.weight) * wolf->posx;
-		c.current_floor_y = c.weight * c.floor_y_wall
-				+ (1.0 - c.weight) * wolf->posy;
+		c.current_floor_x = fabs(c.weight * c.floor_x_wall
+				+ (1.0 - c.weight) * wolf->posx);
+		c.current_floor_y = fabs(c.weight * c.floor_y_wall
+				+ (1.0 - c.weight) * wolf->posy);
 		floor_casting(wolf, c, x);
 		ceil_casting(wolf, c, x);
 		c.y++;

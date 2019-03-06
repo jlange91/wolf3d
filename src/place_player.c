@@ -6,7 +6,7 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 06:47:04 by jlange            #+#    #+#             */
-/*   Updated: 2019/03/06 06:47:35 by jlange           ###   ########.fr       */
+/*   Updated: 2019/03/06 07:29:41 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int					place_player(t_wolf *wolf)
 	int		x;
 
 	y = 0;
-	if (in_middle1(wolf) == 0)
+	if (wolf->map_height % 2 && wolf->map_width % 2
+		&& wolf->map_height > 1 && wolf->map_width > 1 && in_middle1(wolf) == 0)
 		return (0);
 	while (y < wolf->map_height)
 	{

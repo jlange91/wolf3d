@@ -23,7 +23,7 @@ CC = cc
 
 HEADER = include/wolf3d.h
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 CPPFLAGS = -Iinclude -Imlx_sierra
 
@@ -57,7 +57,7 @@ OBJS = $(addprefix obj/, $(OBJ))
 all: $(NAME)
 
 $(NAME): obj/ $(OBJS)
-	@$(CC) $(OBJS) -g libft/libft.a mlx_sierra/libmlx.a -framework OpenGl -framework AppKit -o $(NAME) -fsanitize=address
+	@$(CC) $(OBJS) libft/libft.a mlx_sierra/libmlx.a -framework OpenGl -framework AppKit -o $(NAME)
 
 obj/:
 	@make -C libft
